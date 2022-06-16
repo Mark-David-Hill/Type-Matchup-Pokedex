@@ -1,6 +1,12 @@
 // import { getData, capitalize, display, getEl} from './modules/util.js'
 const Pokedex = require("pokeapi-js-wrapper")
 const P = new Pokedex.Pokedex()
+const getPokemon = require('./getPokemon');
+const printHello = require('./print-hello');
+printHello();
+let newPokemon = getPokemon('charizard');
+// console.log(newPokemon);
+
 
 // with await, be sure to be in an async function (and in a try/catch)
 // (async () => {
@@ -20,7 +26,8 @@ function getTypes(pokemon) {
     let typesData = response.types;
     let types = [];
     typesData.forEach(element => {
-      types.push(element.type.name)
+      let currentType = element.type.name;
+      types.push(currentType)
     });
 
     console.log(types);
@@ -28,4 +35,4 @@ function getTypes(pokemon) {
   })
 }
 
-getTypes("raichu");
+getTypes("bulbasaur");
