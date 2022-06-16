@@ -8,16 +8,24 @@ const P = new Pokedex.Pokedex()
 //     console.log(golduck)
 //   })()
 
-let name = "charizard"
 
 // name, types
 
 // or with Promises
-P.getPokemonByName(name)
+
+function getTypes(pokemon) {
+  // Retrieve Pokemon data from api by name
+  P.getPokemonByName(pokemon)
   .then(function(response) {
-    type1 = response.types[0].type.name
-    type2 = response.types[1].type.name
-  
-    console.log(type1)
-    console.log(type2)
+    let typesData = response.types;
+    let types = [];
+    typesData.forEach(element => {
+      types.push(element.type.name)
+    });
+
+    console.log(types);
+    return types;
   })
+}
+
+getTypes("raichu");
