@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "pokeapi-js-wrapper": "^1.2.2"
-  }
+  },
+  "name": "type-matchup-pokedex",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mark-David-Hill/Type-Matchup-Pokedex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mark-David-Hill/Type-Matchup-Pokedex/issues"
+  },
+  "homepage": "https://github.com/Mark-David-Hill/Type-Matchup-Pokedex#readme"
 }

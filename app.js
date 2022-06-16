@@ -9,11 +9,18 @@ const P = new Pokedex.Pokedex()
 //     console.log(golduck)
 //   })()
 
+let name = "charizard"
+
+// name, types
 
 // or with Promises
-P.getPokemonByName("eevee")
+P.getPokemonByName(name)
   .then(function(response) {
-    console.log(response)
+    type1 = response.types[0].type.name
+    type2 = response.types[1].type.name
+  
+    console.log(type1)
+    console.log(type2)
   })
 
 
