@@ -1,7 +1,9 @@
-module.exports = function(target, ...contents) {
+module.exports = (target, ...contents) => {
     let content = "";
-    contents.forEach(el => {
-        content += el;
-    });
+    // Add all items included in contents array
+    for (let item of contents) {
+        content += item;
+    }
+    // Display content to target element
     target.innerHTML = content;
 }

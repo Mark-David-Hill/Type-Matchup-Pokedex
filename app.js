@@ -7,10 +7,10 @@ const util = require('./modules/util/util');
 const capitalize = util.capitalize;
 const getEl = util.getEl;
 const display = util.display;
-
-
-
+const log = util.log;
 const root = getEl('root');
+
+
 // const message = capitalize('hello friend');
 // display(root, message)
 
@@ -52,7 +52,7 @@ function displayPokemon(pokemon) {
   // Retrieve Pokemon data from api by name
   P.getPokemonByName(pokemon)
   .then(function(response) {
-    const name = response.name;
+    const name = capitalize(response.name);
     let typesData = response.types;
     let types = [];
     typesData.forEach(element => {

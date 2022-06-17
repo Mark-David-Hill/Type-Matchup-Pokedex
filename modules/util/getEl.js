@@ -1,4 +1,2 @@
-// Get HTML element by id
-module.exports = function getEl(id) {
-    return document.getElementById(id);
-}
+// Get HTML element by id (shorter syntax)
+module.exports = getEl = id => document.getElementById(id);
