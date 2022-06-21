@@ -1,7 +1,6 @@
 // import { getData, capitalize, display, getEl} from './modules/util.js'
 const Pokedex = require("pokeapi-js-wrapper")
 const P = new Pokedex.Pokedex()
-const getPokemon = require('./modules/pokemon/getPokemon');
 const getType = require('./modules/pokemon/getType');
 const util = require('./modules/util/util');
 const capitalize = util.capitalize;
@@ -10,12 +9,15 @@ const display = util.display;
 const log = util.log;
 const root = getEl('root');
 
+// Get Pokemon by name:
+// P.getPokemonByName(pokemon).then(function(response) {
+//    return response 
+// });
 
-// const message = capitalize('hello friend');
-// display(root, message)
-
-
-// let newPokemon = getPokemon('charizard');
+// Get a Pokemon's type info:
+// P.getTypeByName(type).then(function(response) {
+  //  return response;
+// });
 
 function getTypes(pokemon) {
   // Retrieve Pokemon data from api by name
