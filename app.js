@@ -46,14 +46,22 @@ getTypes("bulbasaur");
 // }
 
 console.log('TRY TO GET TYPE:')
-getType('normal')
+getType('fire');
 
 
 
-function displayPokemon(pokemon) {
+// with await, be sure to be in an async function (and in a try/catch)
+(async () => {
+  const golduck = await P.getPokemonByName("golduck")
+  console.log(golduck)
+})()
+
+
+const displayPokemon = async (pokemon) => {
   // Retrieve Pokemon data from api by name
-  P.getPokemonByName(pokemon)
-  .then(function(response) {
+  try {
+    console.log('start await')
+    let response = await P.getPokemonByName(pokemon)
     const name = capitalize(response.name);
     let typesData = response.types;
     let types = [];
@@ -78,7 +86,10 @@ function displayPokemon(pokemon) {
     
     console.log(types);
     return types;
-  })
+  }
+  catch (err) {
+    console.log('Failed to load data from Pokemon API. ERROR:', err);
+  }
 }
 
-displayPokemon('mew')
+displayPokemon('charmander')
