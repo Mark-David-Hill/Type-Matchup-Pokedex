@@ -23,15 +23,15 @@ const displayPokemon = require('./modules/pokemon/displayPokemon');
 // });
 
 // Get Pokemon Data
-P.getPokemonByName('mewtwo').then((response) => {
-  console.log(`${response.name}'s info retrieved.`)
-  console.log(response)
-  // Display Pokemon data
-  getTypes(response);
-  displayPokemon(response);
-})
-  
-
+P.getPokemonByName('starmie').
+  then((response) => {
+    console.log(`${response.name}'s info retrieved.`)
+    console.log(response)
+    // Display Pokemon data
+    getTypes(response);
+    displayPokemon(response);
+  })
+  .catch((err) => console.log('Could not retrieve Pokemon data from Poke API.', err));
 
 
 // // function getTypeData(type) {
