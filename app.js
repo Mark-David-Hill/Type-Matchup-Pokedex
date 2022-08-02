@@ -22,16 +22,56 @@ const displayPokemon = require('./modules/pokemon/displayPokemon');
   //  return response;
 // });
 
-// Get Pokemon Data
-P.getPokemonByName('starmie').
-  then((response) => {
-    console.log(`${response.name}'s info retrieved.`)
-    console.log(response)
-    // Display Pokemon data
-    getTypes(response);
-    displayPokemon(response);
-  })
-  .catch((err) => console.log('Could not retrieve Pokemon data from Poke API.', err));
+// P.getPokemonSpeciesList
+
+const getPokeSprite = (name) => {
+  P.getPokemonByName(name).
+    then((response) => {
+      const image = response.sprites.front_default
+      console.log('image:')
+      console.log(image);
+    })
+    // const image = pokemon.sprites.front_default
+}
+
+//
+// Get array of all Pokemon (name and url)
+// 
+const interval = {
+  offset: 0,
+  limit: 905,
+}
+console.log('get pokemon list')
+P.getPokemonsList(interval).then(function(response) {
+  const allPokemon = response.results;
+  console.log('all Pokemon:')
+  console.log(allPokemon)
+  const root = document.getElementById('root');
+  let content = '';
+  for (let i = 0; i < 151; i++) {
+    const pokemon = allPokemon[i].name;
+    P.getPokemonByName(pokemon).
+    then((response) => {
+      const image = response.sprites.front_default
+      console.log('image:')
+      console.log(image);
+      content += `<image src="${image}">`
+    })
+  }
+  setTimeout(() => {
+    root.innerHTML = content;
+  }, 2000)
+  
+})
+
+
+
+
+
+// console.log('Pokedex:')
+// console.log(P)
+
+
 
 
 // // function getTypeData(type) {
@@ -43,3 +83,16 @@ P.getPokemonByName('starmie').
 
 // console.log('TRY TO GET TYPE:')
 // getType('fire');
+
+
+
+// // Get Pokemon Data
+// P.getPokemonByName('pikachu').
+//   then((response) => {
+//     console.log(`${response.name}'s info retrieved.`)
+//     console.log(response)
+//     // Display Pokemon data
+//     getTypes(response);
+//     displayPokemon(response);
+//   })
+//   .catch((err) => console.log('Could not retrieve Pokemon data from Poke API.', err));
