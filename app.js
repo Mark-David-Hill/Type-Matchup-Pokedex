@@ -99,11 +99,11 @@ const search = () => {
 searchBar.oninput = search;
 
 
-root.addEventListener("click", (event) => {
-  console.log(event.target.id)
-})
 
-// const pokeModal = getEl('pokeModal');
-// pokeModal.addEventListener('shown.bs.modal', function () {
-//   myInput.focus()
-// })
+root.addEventListener("click", (event) => {
+  const pokeModal = getEl('modalContent');
+  const pokeName = event.target.id;
+  let content = "";
+  content += `<p>${pokeName}</p>`
+  pokeModal.innerHTML = content;
+})
