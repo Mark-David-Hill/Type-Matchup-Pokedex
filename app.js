@@ -88,8 +88,13 @@ const search = () => {
     let content = '';
 
     filtered.forEach(pokemon => {
-      content += `<p>#${pokemon.id} ${pokemon.name}</p>`
-      content += `<img src="${pokemon.image}" alt="${pokemon.name}"/>`
+      content += `<div class="col-4 col-md-3 col-lg-2">
+                    <div class="card">
+                      <button type="button" class="btn">
+                        <img id="${pokemon.name}" src="${pokemon.image}" alt="${pokemon.name}"/>
+                      </button>
+                    </div>
+                  </div>`
     });
     // Display Pokemon data to root element
     root.innerHTML = content;
@@ -103,7 +108,37 @@ searchBar.oninput = search;
 root.addEventListener("click", (event) => {
   const pokeModal = getEl('modalContent');
   const pokeName = event.target.id;
-  let content = "";
-  content += `<p>${pokeName}</p>`
-  pokeModal.innerHTML = content;
+  getPokemon(pokeName)
+    .then((response) => {
+      const pokemon = response;
+      const image = pokemon.sprites.front_default
+      let content = "";
+      content += `<div class="row">
+                    <img src="${image}" alt="${pokemon.name}"/>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h2 class="text-center">#${pokemon.id} ${pokemon.name}</h2>
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <p>Type 1</p>
+                      </div>
+                      <div class="row">
+                        <p>Type 2</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <p>Weak To:</p>
+                  </div>
+                  <div class="row">
+                    <p>Resistant To:</p>
+                  </div>
+                  <div class="row">
+                    <p>Immune To:</p>
+                  </div>`
+      pokeModal.innerHTML = content;
+    })
+  
 })
