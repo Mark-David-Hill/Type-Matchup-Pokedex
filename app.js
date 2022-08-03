@@ -22,13 +22,11 @@ const interval = {
   // How man Pokemon to return (905 is max number pre Scarlet and Violet)
   limit: 905,
 }
+
 // Returns an array of all pokemon with name and url
 P.getPokemonsList(interval).
   then((response) => {
     const allPokemon = response.results;
-    const root = document.getElementById('root');
-    let content = '';
-
     const promises = [];
 
     for (let i = 0; i < 151; i++) {
@@ -39,17 +37,46 @@ P.getPokemonsList(interval).
     // returns results once every promise is fulfilled. Makes sure data for each Pokemon is returned and that it is in the correct order
     Promise.all(promises)
       .then( results => {
+        // 
         // Creates an array of data for all Pokemon
-        const pokemon = results.map(result => {
-          const id = result.id;
-          const name = result.name;
-          const image = result.sprites.front_default;
-          // types = result.types.map((type) => type);
-          content += `<p>#${id} ${name}</p>`
+        // 
+        const pokedex = results.map((result) => ({
+          id: result.id,
+          name: result.name,
+          image: result.sprites.front_default
+          // types = result.types.map((type) => type)
+        }));
+
+        console.log(pokedex)
+
+        // 
+        // Using created Pokemon array, uses data to create HTML content/display it to the screen.
+        // 
+        const root = document.getElementById('root');
+        let content = '';
+
+        pokedex.forEach(pokemon => {
+          content += `<p>#${pokemon.id} ${pokemon.name}</p>`
         });
-        
         // Display Pokemon data to root element
         root.innerHTML = content;
+
+
+        const ages = [32, 33, 16, 40];
+        const result = ages.filter(checkAdult);
+
+        function checkAdult(age) {
+          return age >= 18;
+        }
+
+        const search = 'saur';
+        const checkSearch = (pokemon) => {
+          return pokemon.name.includes(search);
+        }
+        const filtered = pokedex.filter(checkSearch);
+        
+        console.log('filtered:')
+        console.log(filtered);
+
     })
-  
 })
