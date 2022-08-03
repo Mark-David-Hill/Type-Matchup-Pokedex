@@ -1,6 +1,6 @@
 // import { getData, capitalize, display, getEl} from './modules/util.js'
 const Pokedex = require("pokeapi-js-wrapper");
-const P = new Pokedex.Pokedex();
+const P = new Pokedex.Pokedex({ cacheImages: true });
 const getPokemon = require('./modules/pokemon/getPokemon');
 const getType = require('./modules/pokemon/getType');
 const getTypes = require('./modules/pokemon/getTypes');
@@ -9,64 +9,67 @@ const capitalize = util.capitalize;
 const getEl = util.getEl;
 const display = util.display;
 const log = util.log;
+
+const cache = {};
+
 const root = getEl('root');
 const displayPokemon = require('./modules/pokemon/displayPokemon');
 
 let allPokemon = undefined;
 
-//
-// Get array of all Pokemon (name and url)
+// 
+// //
+// Get array of Pokemon
+// //
 // 
 
 const interval = {
   // Where to start (0 = beginning of Pokemon list (Bulbasaur))
   offset: 0,
   // How man Pokemon to return (905 is max number pre Scarlet and Violet)
-  limit: 905,
+  // 905 includes new Pokemon from Legends Arceus but those don't have sprites
+  limit: 898,
 }
 
 // Returns an array of all pokemon with name and url
 P.getPokemonsList(interval).
   then((response) => {
     rawPokeList = response.results;
-    const promises = [];
 
-    for (let i = 0; i < rawPokeList.length; i++) {
-      const pokemon = rawPokeList[i].name;
-      promises.push(P.getPokemonByName(pokemon))
-    }
+    // Create modified array that includes each Pokemon's id, name, and index
+    allPokemon = rawPokeList.map((pokemon, index) => ({
+      id: index + 1,
+      name: pokemon.name,
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
+      url: pokemon.url
+      // types = result.types.map((type) => type)
+    }));
 
-    // returns results once every promise is fulfilled. Makes sure data for each Pokemon is returned and that it is in the correct order
-    Promise.all(promises)
-      .then( results => {
-        // 
-        // Creates an array of data for all Pokemon
-        // 
-        allPokemon = results.map((result) => ({
-          id: result.id,
-          name: result.name,
-          image: result.sprites.front_default
-          // types = result.types.map((type) => type)
-        }));
+    console.log(allPokemon)
 
-        console.log(allPokemon)
+    // 
+    // Using created Pokemon array, uses data to create HTML content/display it to the screen.
+    // 
+    let content = '';
 
-        // 
-        // Using created Pokemon array, uses data to create HTML content/display it to the screen.
-        // 
-        const root = document.getElementById('root');
-        let content = '';
-
-        allPokemon.forEach(pokemon => {
-          content += `<p>#${pokemon.id} ${pokemon.name}</p>`
-        });
-        // Display Pokemon data to root element
-        root.innerHTML = content;
-    })
+    allPokemon.forEach(pokemon => {
+      content += `<p>#${pokemon.id} ${pokemon.name}</p>`
+      content += `<img src="${pokemon.image}" alt="${pokemon.name}"/>`
+    });
+    // Display Pokemon data to root element
+    root.innerHTML = content;
 })
 
-const searchBar = document.getElementById('search');
+// 
+// //
+// Search Functionality
+// //
+// 
 
+
+const searchBar = getEl('search')
+
+// Function to run when user types in search bar
 const search = () => {
   if (allPokemon) {
     let searchStr = searchBar.value;
@@ -79,6 +82,7 @@ const search = () => {
 
     filtered.forEach(pokemon => {
       content += `<p>#${pokemon.id} ${pokemon.name}</p>`
+      content += `<img src="${pokemon.image}" alt="${pokemon.name}"/>`
     });
     // Display Pokemon data to root element
     root.innerHTML = content;
