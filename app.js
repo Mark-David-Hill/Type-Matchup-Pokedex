@@ -53,8 +53,15 @@ P.getPokemonsList(interval).
     let content = '';
 
     allPokemon.forEach(pokemon => {
-      content += `<p>#${pokemon.id} ${pokemon.name}</p>`
-      content += `<img src="${pokemon.image}" alt="${pokemon.name}"/>`
+      content += `<div class="col-4 col-md-3 col-lg-2">
+                    <div class="card">
+                      <button type="button" class="btn">
+                        <img id="${pokemon.name}" src="${pokemon.image}" alt="${pokemon.name}"/>
+                      </button>
+                    </div>
+                  </div>`
+      // content += `<p>#${pokemon.id} ${pokemon.name}</p>`
+      // content += `<img src="${pokemon.image}" alt="${pokemon.name}"/>`
     });
     // Display Pokemon data to root element
     root.innerHTML = content;
@@ -90,3 +97,13 @@ const search = () => {
 }
 
 searchBar.oninput = search;
+
+
+root.addEventListener("click", (event) => {
+  console.log(event.target.id)
+})
+
+// const pokeModal = getEl('pokeModal');
+// pokeModal.addEventListener('shown.bs.modal', function () {
+//   myInput.focus()
+// })
