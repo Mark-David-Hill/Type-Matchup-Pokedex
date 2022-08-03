@@ -31,7 +31,7 @@ P.getPokemonsList(interval).
     rawPokeList = response.results;
     const promises = [];
 
-    for (let i = 0; i < 151; i++) {
+    for (let i = 0; i < rawPokeList.length; i++) {
       const pokemon = rawPokeList[i].name;
       promises.push(P.getPokemonByName(pokemon))
     }
