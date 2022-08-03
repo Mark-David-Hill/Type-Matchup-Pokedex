@@ -12,6 +12,8 @@ const log = util.log;
 const root = getEl('root');
 const displayPokemon = require('./modules/pokemon/displayPokemon');
 
+let allPokemon = undefined;
+
 //
 // Get array of all Pokemon (name and url)
 // 
@@ -26,11 +28,11 @@ const interval = {
 // Returns an array of all pokemon with name and url
 P.getPokemonsList(interval).
   then((response) => {
-    const allPokemon = response.results;
+    rawPokeList = response.results;
     const promises = [];
 
     for (let i = 0; i < 151; i++) {
-      const pokemon = allPokemon[i].name;
+      const pokemon = rawPokeList[i].name;
       promises.push(P.getPokemonByName(pokemon))
     }
 
@@ -40,14 +42,14 @@ P.getPokemonsList(interval).
         // 
         // Creates an array of data for all Pokemon
         // 
-        const pokedex = results.map((result) => ({
+        allPokemon = results.map((result) => ({
           id: result.id,
           name: result.name,
           image: result.sprites.front_default
           // types = result.types.map((type) => type)
         }));
 
-        console.log(pokedex)
+        console.log(allPokemon)
 
         // 
         // Using created Pokemon array, uses data to create HTML content/display it to the screen.
@@ -55,28 +57,32 @@ P.getPokemonsList(interval).
         const root = document.getElementById('root');
         let content = '';
 
-        pokedex.forEach(pokemon => {
+        allPokemon.forEach(pokemon => {
           content += `<p>#${pokemon.id} ${pokemon.name}</p>`
         });
         // Display Pokemon data to root element
         root.innerHTML = content;
-
-
-        const ages = [32, 33, 16, 40];
-        const result = ages.filter(checkAdult);
-
-        function checkAdult(age) {
-          return age >= 18;
-        }
-
-        const search = 'saur';
-        const checkSearch = (pokemon) => {
-          return pokemon.name.includes(search);
-        }
-        const filtered = pokedex.filter(checkSearch);
-        
-        console.log('filtered:')
-        console.log(filtered);
-
     })
 })
+
+const searchBar = document.getElementById('search');
+
+const search = () => {
+  if (allPokemon) {
+    let searchStr = searchBar.value;
+    const checkSearch = (pokemon) => {
+      return pokemon.name.includes(searchStr);
+    }
+    const filtered = allPokemon.filter(checkSearch);
+    
+    let content = '';
+
+    filtered.forEach(pokemon => {
+      content += `<p>#${pokemon.id} ${pokemon.name}</p>`
+    });
+    // Display Pokemon data to root element
+    root.innerHTML = content;
+  }
+}
+
+searchBar.oninput = search;
