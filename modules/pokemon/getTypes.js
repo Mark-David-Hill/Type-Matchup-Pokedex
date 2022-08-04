@@ -1,4 +1,5 @@
 module.exports = (pokemon) => {
+    // types = result.types.map((type) => type)
     let typesData = pokemon.types;
     let types = [];
     typesData.forEach(element => {
