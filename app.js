@@ -1,57 +1,32 @@
-// import { getData, capitalize, display, getEl} from './modules/util.js'
-const Pokedex = require("pokeapi-js-wrapper");
-const P = new Pokedex.Pokedex({ cacheImages: true });
-const getPokemon = require('./modules/pokemon/getPokemon');
-const getAllPokemon = require('./modules/pokemon/getAllPokemon');
-const makePokeArray = require('./modules/pokemon/makePokeArray');
-const displayAllPokemon = require('./modules/pokemon/displayAllPokemon');
-const getType = require('./modules/pokemon/getType');
-const getTypes = require('./modules/pokemon/getTypes');
-const util = require('./modules/util/util');
-const capitalize = util.capitalize;
-const getEl = util.getEl;
-const display = util.display;
-const log = util.log;
+// 
+// Modules
+// 
 
-const cache = {};
-
-
-// // General Utility functions
-// const util = require('./modules/util/util');
-// const U = new util;
-
-// // Custom functions for working with 
-// const PokeUtil = require('./modules/pokemon/pokeUtil');
-// const Pu = new PokeUtil;
-
-// // Poke API functions
-// const Pokedex = require("pokeapi-js-wrapper");
-// const P = new Pokedex.Pokedex({ cacheImages: true });
+// Custom utility functions for working with Pokemon Data
+const PD = require('./modules/pokemon/pokedexUtil');
+// general utility functions
+const U = require('./modules/util/util');
 
 // const cache = {};
-
-const root = getEl('root');
 
 // 
 // Initialize- retrieve data for all Pokemon/display to screen
 // 
 
 const initialize = async () => {
-  const pokeData = await getAllPokemon();
-  const allPokemon = makePokeArray(pokeData);
-  displayAllPokemon(allPokemon);
+  const pokeData = await PD.getAllPokemon();
+  const allPokemon = PD.makePokeArray(pokeData);
+  PD.displayAllPokemon(allPokemon);
 }
 
 initialize();
 
 // 
-// //
 // Search Functionality
-// //
 // 
 
 
-const searchBar = getEl('search')
+const searchBar = U.getEl('search')
 
 // Function to run when user types in search bar
 const search = () => {
@@ -74,6 +49,7 @@ const search = () => {
                   </div>`
     });
     // Display Pokemon data to root element
+    const root = U.getEl('root');
     root.innerHTML = content;
   }
 }
@@ -81,15 +57,15 @@ const search = () => {
 searchBar.oninput = search;
 
 // 
-// //
 // Show info for individual Pokemon
-// //
 // 
 
+const root = U.getEl('root');
+
 root.addEventListener("click", (event) => {
-  const pokeModal = getEl('modalContent');
+  const pokeModal = U.getEl('modalContent');
   const pokeName = event.target.id;
-  getPokemon(pokeName)
+  PD.getPokemon(pokeName)
     .then((response) => {
       const pokemon = response;
       console.log(pokemon);
