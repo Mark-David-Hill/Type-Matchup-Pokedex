@@ -103,7 +103,11 @@ const search = () => {
 
 searchBar.oninput = search;
 
-
+// 
+// //
+// Show info for individual Pokemon
+// //
+// 
 
 root.addEventListener("click", (event) => {
   const pokeModal = getEl('modalContent');
@@ -111,7 +115,9 @@ root.addEventListener("click", (event) => {
   getPokemon(pokeName)
     .then((response) => {
       const pokemon = response;
-      const image = pokemon.sprites.front_default
+      console.log(pokemon);
+      const image = pokemon.sprites.other[`official-artwork`].front_default
+      // const image = pokemon.sprites.front_default
       let content = "";
       content += `<div class="row">
                     <img src="${image}" alt="${pokemon.name}"/>
