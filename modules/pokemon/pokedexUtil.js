@@ -7,6 +7,7 @@ const getType = require('./getType');
 const getTypes = require('./getTypes');
 const pokeSearch = require('./pokeSearch');
 const makeFiltCont = require('./makeFiltCont');
+const makePokeCont = require('./makePokeCont');
 
 module.exports = {
     getPokemon: getPokemon,
@@ -17,5 +18,6 @@ module.exports = {
     getType: getType,
     getTypes: getTypes,
     pokeSearch: pokeSearch,
-    makeFiltCont: makeFiltCont
+    makeFiltCont: makeFiltCont,
+    makePokeCont: makePokeCont
 };
