@@ -5,6 +5,8 @@ const displayPokemon = require('./displayPokemon');
 const displayAllPokemon = require('./displayAllPokemon');
 const getType = require('./getType');
 const getTypes = require('./getTypes');
+const pokeSearch = require('./pokeSearch');
+const makeFiltCont = require('./makeFiltCont');
 
 module.exports = {
     getPokemon: getPokemon,
@@ -13,5 +15,7 @@ module.exports = {
     displayPokemon: displayPokemon,
     displayAllPokemon: displayAllPokemon,
     getType: getType,
-    getTypes: getTypes
+    getTypes: getTypes,
+    pokeSearch: pokeSearch,
+    makeFiltCont: makeFiltCont
 };

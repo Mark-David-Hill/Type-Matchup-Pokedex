@@ -7,15 +7,15 @@ const PD = require('./modules/pokemon/pokedexUtil');
 // general utility functions
 const U = require('./modules/util/util');
 
-// const cache = {};
-
 // 
 // Initialize- retrieve data for all Pokemon/display to screen
 // 
 
+let allPokemon = undefined;
+
 const initialize = async () => {
   const pokeData = await PD.getAllPokemon();
-  const allPokemon = PD.makePokeArray(pokeData);
+  allPokemon = PD.makePokeArray(pokeData);
   PD.displayAllPokemon(allPokemon);
 }
 
@@ -25,35 +25,20 @@ initialize();
 // Search Functionality
 // 
 
-
 const searchBar = U.getEl('search')
 
 // Function to run when user types in search bar
 const search = () => {
   if (allPokemon) {
-    let searchStr = searchBar.value.toLowerCase();
-    const checkSearch = (pokemon) => {
-      return pokemon.name.includes(searchStr);
-    }
-    const filtered = allPokemon.filter(checkSearch);
-    
-    let content = '';
-
-    filtered.forEach(pokemon => {
-      content += `<div class="col-4 col-md-3 col-lg-2">
-                    <div class="card">
-                      <button type="button" class="btn">
-                        <img id="${pokemon.name}" src="${pokemon.image}" alt="${pokemon.name}"/>
-                      </button>
-                    </div>
-                  </div>`
-    });
-    // Display Pokemon data to root element
+    const filteredList = PD.pokeSearch(allPokemon, searchBar);
+    const content = PD.makeFiltCont(filteredList);
+    // Display Pokemon data based on search
     const root = U.getEl('root');
     root.innerHTML = content;
   }
 }
 
+// When the user types in the search bar, run the search function
 searchBar.oninput = search;
 
 // 
@@ -65,6 +50,10 @@ const root = U.getEl('root');
 root.addEventListener("click", (event) => {
   const pokeModal = U.getEl('modalContent');
   const pokeName = event.target.id;
+  // Request Pokemon Data
+
+  // Use Poke Data to create content
+
   PD.getPokemon(pokeName)
     .then((response) => {
       const pokemon = response;
@@ -99,5 +88,7 @@ root.addEventListener("click", (event) => {
                   </div>`
       pokeModal.innerHTML = content;
     })
-  
-})
+});
+
+
+// const cache = {};
