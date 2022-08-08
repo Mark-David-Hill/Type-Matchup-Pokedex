@@ -11,7 +11,7 @@ module.exports = (pokemon) => {
   // Only generate HTML content for type2 there is a second type
   if (type2) {
     type2Cont = `<div class="row">
-                  <p>${type2}</p>
+                  <p class="${type2}">${type2}</p>
                 </div>`
   }
   console.log('types test:')
@@ -28,7 +28,7 @@ module.exports = (pokemon) => {
       </div>
       <div class="col">
         <div class="row">
-          <p>${type1}</p>
+          <p class="${type1}">${type1}</p>
         </div>
         ${type2Cont}
       </div>
