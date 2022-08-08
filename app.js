@@ -8,14 +8,18 @@ const U = require('./modules/util/util');
 // 
 
 let allPokemon = undefined;
+let allTypesData = undefined;
 
 const initialize = async () => {
   const pokeData = await PD.getAllPokemon();
   allPokemon = PD.makePokeArray(pokeData);
   PD.displayAllPokemon(allPokemon);
+  allTypesData = PD.getAllTypesData();
 }
 
 initialize();
+
+
 
 // 
 // Search Functionality
@@ -46,14 +50,15 @@ const root = U.getEl('root');
 root.addEventListener("click", (event) => {
   
   const pokeName = event.target.id;
-  
-  PD.getPokemon(pokeName)
+  // if (allPokemon && allTypesData) {
+    PD.getPokemon(pokeName)
     .then((response) => {
       const pokemon = response;
       const pokeModal = U.getEl('modalContent');
-      content = PD.makePokeCont(pokemon);
+      content = PD.makePokeCont(pokemon, allTypesData);
       pokeModal.innerHTML = content;
     })
+  // }
 });
 
 

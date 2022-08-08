@@ -6,7 +6,5 @@ module.exports = (pokemon) => {
       let currentType = element.type.name;
       types.push(currentType)
     });
-    console.log("Pokemon's types:")
-    console.log(types);
     return types;
 }

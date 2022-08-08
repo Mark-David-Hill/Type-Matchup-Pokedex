@@ -3,7 +3,8 @@ const getAllPokemon = require('./getAllPokemon');
 const makePokeArray = require('./makePokeArray');
 const displayPokemon = require('./displayPokemon');
 const displayAllPokemon = require('./displayAllPokemon');
-const getType = require('./getType');
+const getTypeData = require('./getTypeData');
+const getAllTypesData = require('./getAllTypesData');
 const getTypes = require('./getTypes');
 const pokeSearch = require('./pokeSearch');
 const makeFiltCont = require('./makeFiltCont');
@@ -15,7 +16,8 @@ module.exports = {
     makePokeArray: makePokeArray,
     displayPokemon: displayPokemon,
     displayAllPokemon: displayAllPokemon,
-    getType: getType,
+    getTypeData: getTypeData,
+    getAllTypesData: getAllTypesData,
     getTypes: getTypes,
     pokeSearch: pokeSearch,
     makeFiltCont: makeFiltCont,

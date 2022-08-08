@@ -1,6 +1,7 @@
 const getTypes = require("./getTypes")
 const U = require("../util/util")
 const typeTemplate = require("./typeTemplate")
+const getDmgRel = require("./getDmgRel");
 
 // Creates HTML content for the data of a given Pokemon
 module.exports = (pokemon) => {
@@ -21,6 +22,8 @@ module.exports = (pokemon) => {
   if (type2) {
     type2Cont = typeTemplate(type2);
   }
+
+  getDmgRel(types);
 
   // 
   // Set up HTML content
