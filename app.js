@@ -1,7 +1,3 @@
-// 
-// Modules
-// 
-
 // Custom utility functions for working with Pokemon Data
 const PD = require('./modules/pokemon/pokedexUtil');
 // general utility functions
@@ -38,7 +34,7 @@ const search = () => {
   }
 }
 
-// When the user types in the search bar, run the search function
+// run when user types in search bar
 searchBar.oninput = search;
 
 // 
