@@ -2,6 +2,7 @@ const getTypes = require("./getTypes")
 const U = require("../util/util")
 const typeTemplate = require("./typeTemplate")
 const getDmgRel = require("./getDmgRel");
+const getDmgProfile = require("./getDmgProfile");
 
 // Creates HTML content for the data of a given Pokemon
 module.exports = (pokemon, allTypesData) => {
@@ -16,11 +17,9 @@ module.exports = (pokemon, allTypesData) => {
   const types = getTypes(pokemon);
   const type1 = types[0];
   const type2 = types[1];
-  const type1DmgRel = getDmgRel(type1, allTypesData);
-  const type2DmgRel = getDmgRel(type2, allTypesData);
-  console.log('types 1 and 2 dmg relations:')
-  console.log(type1DmgRel)
-  console.log(type2DmgRel)
+  const dmgProfile = getDmgProfile(type1, type2, allTypesData)
+  console.log('dmgProfile:')
+  console.log(dmgProfile);
   const type1Cont = typeTemplate(type1);
   let type2Cont = ''
   // Only generate HTML content for type2 if there is a second type
