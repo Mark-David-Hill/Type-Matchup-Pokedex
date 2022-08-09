@@ -25,8 +25,8 @@ const getAllTypesData = async () => {
     
     await Promise.all(promises).then((results) => {
         // allTypesData = results;
-        console.log('new all types data test in app.js:')
-        console.log(results);
+        // console.log('new all types data test in app.js:')
+        // console.log(results);
         allTypesData = results;
     });
   }

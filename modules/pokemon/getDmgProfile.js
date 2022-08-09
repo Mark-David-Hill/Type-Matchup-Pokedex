@@ -122,8 +122,8 @@ module.exports = (type1, type2, allTypesData) => {
         });
     }
     
-    console.log('Type Rel Test')
-    console.log(typeRel);
+    // console.log('Type Rel Test')
+    // console.log(typeRel);
 
     const defDmgRel = {
         x0: [],
@@ -153,8 +153,8 @@ module.exports = (type1, type2, allTypesData) => {
         }
     }
 
-    console.log('def damage rel test')
-    console.log(defDmgRel);
+    // console.log('def damage rel test')
+    // console.log(defDmgRel);
 
     return defDmgRel;
 }

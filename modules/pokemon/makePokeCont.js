@@ -3,6 +3,7 @@ const U = require("../util/util")
 const typeTemplate = require("./typeTemplate")
 const getDmgRel = require("./getDmgRel");
 const getDmgProfile = require("./getDmgProfile");
+const defDmgTemplate = require("./defDmgTemplate");
 
 // Creates HTML content for the data of a given Pokemon
 module.exports = (pokemon, allTypesData) => {
@@ -18,8 +19,10 @@ module.exports = (pokemon, allTypesData) => {
   const type1 = types[0];
   const type2 = types[1];
   const dmgProfile = getDmgProfile(type1, type2, allTypesData)
-  console.log('dmgProfile:')
-  console.log(dmgProfile);
+
+  const dmgProfCont = defDmgTemplate(dmgProfile);
+  
+
   const type1Cont = typeTemplate(type1);
   let type2Cont = ''
   // Only generate HTML content for type2 if there is a second type
@@ -49,15 +52,7 @@ module.exports = (pokemon, allTypesData) => {
         </ul>
       </div>
     </div>
-    <div class="row">
-      <p>Weak To:</p>
-    </div>
-    <div class="row">
-      <p>Resistant To:</p>
-    </div>
-    <div class="row">
-      <p>Immune To:</p>
-    </div>`
+    ${dmgProfCont}`
   return content;
 }
 
