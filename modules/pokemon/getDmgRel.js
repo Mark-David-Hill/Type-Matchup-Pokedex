@@ -1,13 +1,10 @@
-const getTypeData = require('./getTypeData')
+const getTypeId = require("./getTypeId");
 
-module.exports = (types) => {
-    const typeData = [];
-    types.forEach(type => {
-        typeData.push(getTypeData(type));
-    });
+module.exports = (type, allTypesData) => {
+    typeId = getTypeId(type);
 
-    typeData.forEach(type => {
-        console.log('type damage relations test:')
-        console.log(type.damage_relations);
-    });    
+    typeData = allTypesData[typeId]
+    console.log('this type"s data:')
+    console.log(typeData);
+    return typeData;
 }

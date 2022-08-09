@@ -3,22 +3,52 @@ const PD = require('./modules/pokemon/pokedexUtil');
 // general utility functions
 const U = require('./modules/util/util');
 
+const Pokedex = require("pokeapi-js-wrapper");
+const P = new Pokedex.Pokedex();
+
 // 
 // Initialize- retrieve data for all Pokemon/display to screen
 // 
 
 let allPokemon = undefined;
-let allTypesData = undefined;
+let allTypesData = null;
+
+const getAllTypesData = async () => {
+  try {
+    const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
+
+    let promises = [];
+    // Create array of promises for retrieving type data
+    for (let i = 0; i < types.length; i++) {
+        promises.push(P.getTypeByName(types[i]));
+    }
+    
+    await Promise.all(promises).then((results) => {
+        // allTypesData = results;
+        console.log('new all types data test in app.js:')
+        console.log(results);
+        allTypesData = results;
+    });
+  }
+  catch(err){
+      console.log('Error when retrieving type data:')
+      console.log(err);
+  }
+}
 
 const initialize = async () => {
   const pokeData = await PD.getAllPokemon();
   allPokemon = PD.makePokeArray(pokeData);
   PD.displayAllPokemon(allPokemon);
-  allTypesData = PD.getAllTypesData();
 }
 
 initialize();
+getAllTypesData();
 
+// setTimeout(() => {
+//   console.log('new test: this is what is in allTypesData:')
+//   console.log(allTypesData);
+// }, 3000)
 
 
 // 
@@ -51,7 +81,7 @@ root.addEventListener("click", (event) => {
   
   const pokeName = event.target.id;
   // if (allPokemon && allTypesData) {
-    PD.getPokemon(pokeName)
+    PD.getPokemon(pokeName, allTypesData)
     .then((response) => {
       const pokemon = response;
       const pokeModal = U.getEl('modalContent');
