@@ -19,7 +19,7 @@ module.exports = (type, mod) => {
                 modifier = 'x0'
                 break;
         }
-        content += `<li class="rounded text-center ${type} p-1 m-1">${type}</li><span>${modifier}</span>`
+        content += `<li class="list-group-item rounded text-center ${type} p-1 m-1">${type}</li><span>${modifier}</span>`
     }
     else {
         content += `<li class="rounded text-center ${type} p-1 m-1">${type}</li>`

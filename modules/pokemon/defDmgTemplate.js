@@ -17,12 +17,12 @@ module.exports = (dmgProfile) => {
 
     if (x2 || x4) {
         // Content Open
-        content += `<div class="d-flex flex-column justify-content-center align-items-center">
-                        <div class="flex-column">
+        content += `<div class="row">
+                        <div class="col">
                             <p>Weak To:</p>
                         </div>
-                        <div class="flex-column">
-                            <ul class="text-center align-middle pt-4">`
+                        <div class="col">
+                            <div class="d-flex flex-row">`
 
         // Content Body
         if (x4) {
@@ -39,9 +39,10 @@ module.exports = (dmgProfile) => {
         }
     
         // Content Close
-        content += `        </ul>
+        content += `        
                         </div>
-                    </div>`                
+                    </div>
+                </div>`                
     }
 
     // 
@@ -50,12 +51,12 @@ module.exports = (dmgProfile) => {
 
     if (x1half || x1fourth) {
         // Content Open
-        content += `<div class="d-flex flex-column justify-content-center align-items-center">
-                        <div class="flex-column">
-                            <p>Weak To:</p>
+        content += `<div class="row">
+                        <div class="col">
+                            <p>Resistant To:</p>
                         </div>
-                        <div class="flex-column">
-                            <ul class="text-center align-middle pt-4">`
+                        <div class="col">
+                            <div class="d-flex flex-row">`
 
         // Content Body
         if (x1half) {
@@ -72,9 +73,36 @@ module.exports = (dmgProfile) => {
         }
     
         // Content Close
-        content += `        </ul>
+        content += `        
                         </div>
-                    </div>`                
+                    </div>
+                </div>`                
+    }
+
+    // 
+    // Immune To Section
+    //
+
+    if (x0) {
+        // Content Open
+        content += `<div class="row">
+                        <div class="col">
+                            <p>Immune To:</p>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex flex-row">`
+
+        // Content Body
+        x0.forEach(type => {
+            const mod = 0;
+            content += typeTemplate(type, mod);
+        });
+    
+        // Content Close
+        content += `        
+                        </div>
+                    </div>
+                </div>`                
     }
 
 
