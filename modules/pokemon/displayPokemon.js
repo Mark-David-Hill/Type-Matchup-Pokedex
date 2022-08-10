@@ -11,8 +11,6 @@ module.exports = async (pokemon) => {
     types.push(currentType)
     });
     const image = pokemon.sprites.front_default
-    const weak = '';
-    const strong = '';
 
     let content = '';
     content += `<image src="${image}">`
