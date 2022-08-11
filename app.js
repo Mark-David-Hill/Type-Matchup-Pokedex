@@ -82,13 +82,12 @@ const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
 // div#root.row.g-4, div.container, body.modal-open
 
 root.addEventListener("click", (event) => {
-  // SET UP CLICK THINGS HERE!
   const clickedElement = event.target;
-  // console.log('clicked target')
-  // console.log(clickedElement);
-  // console.log(clickedElement.children[0])
   if (clickedElement.id !== "root") {
     let pokeName = '';
+    let imgEl = U.getEl('pokeImage');
+    console.log(imgEl)
+    imgEl.src = "https://via.placeholder.com/525x500"
     if (clickedElement.classList.contains('pokeImg')) {
       pokeName = clickedElement.id;
     } 
@@ -100,7 +99,7 @@ root.addEventListener("click", (event) => {
       const pokemon = response;
       const pokeModal = U.getEl('modalContent');
       content = PD.makePokeCont(pokemon, allTypesData);
-      pokeModal.innerHTML = content;
+      // pokeModal.innerHTML = content;
       myModal.show();
     })
   }

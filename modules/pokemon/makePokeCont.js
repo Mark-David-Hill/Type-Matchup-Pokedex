@@ -4,9 +4,25 @@ const typeTemplate = require("./typeTemplate")
 const getDmgRel = require("./getDmgRel");
 const getDmgProfile = require("./getDmgProfile");
 const defDmgTemplate = require("./defDmgTemplate");
+const displayWeakness = require("./displayWeakness");
 
 // Creates HTML content for the data of a given Pokemon
 module.exports = (pokemon, allTypesData) => {
+
+  // Set up HTML element variables
+
+  const pokeNameEl = U.getEl('pokeName');
+  const pokeImageEl = U.getEl('pokeImage');
+  const pokeTypesEl = U.getEl('pokeTypes')
+  
+  const resistsTypesEl = U.getEl('resistsTypes')
+  const immuneToTypesEl = U.getEl('immuneToTypes')
+  // Hid or reveal when necessary
+  
+  const resistsRowEl = U.getEl('resistsRow')
+  const immuneToRowEl = U.getEl('immuneToRow')
+  
+
 
   // 
   // Set up Data Variables
@@ -33,6 +49,17 @@ module.exports = (pokemon, allTypesData) => {
   // 
   // Set up HTML content
   // 
+
+  pokeNameEl.textContent = `#${pokemon.id} ${name}`;
+  pokeImageEl.src = `${image}`;
+  pokeImageEl.alt = `${name}`;
+  pokeTypes.innerHTML = `${type1Cont}
+  ${type2Cont}`;
+  resistsTypesEl.innerHTML = '';
+  immuneToTypesEl.innerHTML = '';
+
+  displayWeakness(dmgProfile);
+
 
   let content = "";
   content += `
