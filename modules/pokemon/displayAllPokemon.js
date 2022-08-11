@@ -8,11 +8,18 @@ module.exports = (allPokemon) => {
     allPokemon.forEach(pokemon => {
     content += `<div class="col-4 col-md-3 col-lg-2">
                     <div class="card">
-                    <button type="button" class="btn">
-                        <img id="${pokemon.name}" src="${pokemon.image}" alt="${pokemon.name}"/>
+                    <button type="button" class="btn pokeBtn">
+                        <img id="${pokemon.name}" class="pokeImg" src="${pokemon.image}" alt="${pokemon.name}"/>
                     </button>
                     </div>
                 </div>`
+    // content += `<div class="col-4 col-md-3 col-lg-2">
+    //                 <div class="card">
+    //                 <button type="button" class="btn">
+    //                     <img id="${pokemon.name}" src="${pokemon.image}" alt="${pokemon.name}"/>
+    //                 </button>
+    //                 </div>
+    //             </div>`
     // content += `<p>#${pokemon.id} ${pokemon.name}</p>`
     // content += `<img src="${pokemon.image}" alt="${pokemon.name}"/>`
     });

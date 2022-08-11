@@ -13,6 +13,7 @@ const P = new Pokedex.Pokedex();
 let allPokemon = undefined;
 let allTypesData = null;
 
+// Get Type Data
 const getAllTypesData = async () => {
   try {
     const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
@@ -45,12 +46,6 @@ const initialize = async () => {
 initialize();
 getAllTypesData();
 
-// setTimeout(() => {
-//   console.log('new test: this is what is in allTypesData:')
-//   console.log(allTypesData);
-// }, 3000)
-
-
 // 
 // Search Functionality
 // 
@@ -77,17 +72,41 @@ searchBar.oninput = search;
 
 const root = U.getEl('root');
 
+const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
+
+// Click image:
+// [img#bulbasaur, button.btn,
+// Click button:
+// [button.btn, div.card,
+// Click between:
+// div#root.row.g-4, div.container, body.modal-open
+
 root.addEventListener("click", (event) => {
-  
-  const pokeName = event.target.id;
-  // if (allPokemon && allTypesData) {
+  // SET UP CLICK THINGS HERE!
+  const clickedElement = event.target;
+  // console.log('clicked target')
+  // console.log(clickedElement);
+  // console.log(clickedElement.children[0])
+  if (clickedElement.id !== "root") {
+    let pokeName = '';
+    if (clickedElement.classList.contains('pokeImg')) {
+      pokeName = clickedElement.id;
+    } 
+    else if (clickedElement.classList.contains('pokeBtn')) {
+      pokeName = clickedElement.children[0].id; 
+    }
     PD.getPokemon(pokeName, allTypesData)
     .then((response) => {
       const pokemon = response;
       const pokeModal = U.getEl('modalContent');
       content = PD.makePokeCont(pokemon, allTypesData);
       pokeModal.innerHTML = content;
+      myModal.show();
     })
+  }
+  
+  
+  
   // }
 });
 
