@@ -23,6 +23,107 @@
             </button>
           </div>
 
+
+
+
+          <!--  -->
+        <!-- Pokemon Info Modal -->
+        <!--  -->
+        <div class="modal fade" id="pokeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!-- Modal Dialog -->
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <!-- Modal Content -->
+              <div id="modalContent" class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                      <!-- <h5 class="modal-title">Modal title</h5> -->
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <!-- Image Row -->
+                  <div class="row">
+                      <img id="pokeImage" src="https://via.placeholder.com/525x500" alt="Pokemon">
+                  </div> <!-- end Image Row -->
+
+                  <!-- Name Row -->
+                  <!-- style="background-color: rgb(255, 132, 132)" -->
+                  <div class="d-flex flex-row name-header">
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                          <h2 id="pokeName" class="text-center align-middle mx-5 px-4">#130 Gyarados</h2>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center align-items-center">
+                          <ul id="pokeTypes" class="list-unstyled text-center align-middle pt-4 list-unstyled">
+                              <li class="shadow rounded text-center type water p-1 m-1">water</li>
+                              <li class="shadow rounded text-center type flying p-1 m-1">flying</li>
+                          </ul>
+                      </div>
+                  </div> <!-- End Name Row -->
+
+                  <!-- Defense Dmg Profile -->
+                  <div>
+                      
+                      <!-- Weak to Row -->
+                      <div id="weakToRow" class="row p-3 weak-to">
+                          <div class="col">
+                              <h4 class="pt-2">Weak To:</h4>
+                          </div>
+                          <div class="col">
+                            <div id="weakToTypes" class="list-unstyled d-flex flex-row">
+                              
+                              <li class="type rounded text-center ice p-1 m-1">ice</li>
+                              <li class="type rounded text-center fighting p-1 m-1">fighting</li>
+                              <li class="type rounded text-center ground p-1 m-1">ground</li>
+                              <li class="type rounded text-center steel p-1 m-1">steel</li>
+                              <h4 id="x2" class="pt-2">x2&nbsp;</h4>
+                              
+                              <li class="type rounded text-center water p-1 m-1">water</li>
+                              <li class="type rounded text-center grass p-1 m-1">grass</li>
+                              <h4 id="x4" class="pt-2">x4</h4></div>
+                        </div>
+                      </div> <!-- End Weak to Row -->
+                      
+                      <!-- Resistant to Row -->
+                      <div id="resistsRow" class="row p-3 resists">
+                          <div class="col">
+                              <h4 class="pt-2">Resistant To:</h4>
+                          </div>
+                          <div class="col">
+                              <div id="resistsTypes" class="list-unstyled d-flex flex-row">
+                                  <li class="list-group-item shadow rounded text-center type fire p-1 m-1">fire</li>
+                                  <li class="list-group-item shadow rounded text-center type water p-1 m-1">water</li>
+                                  <li class="list-group-item shadow rounded text-center type fighting p-1 m-1">fighting</li>
+                                  <li class="list-group-item shadow rounded text-center type bug p-1 m-1">bug</li>
+                                  <li class="list-group-item shadow rounded text-center type steel p-1 m-1">steel</li><h4 class="pt-2">x½</h4>        
+                              </div>
+                          </div>
+                      </div> <!-- End Resistant to Row -->
+
+                      <!-- Immune to Row -->
+                      <div id="immuneToRow" class="row p-3 immune-to">
+                          <div class="col">
+                              <h4 class="pt-2">Immune To:</h4>
+                          </div>
+                          <div class="col">
+                              <ul id="immuneToTypes" class="list-unstyled d-flex flex-row">
+                                  <li class="shadow rounded text-center type ground p-1 m-1">ground</li><h4 class="pt-2">x0</h4>        
+                              </ul>
+                          </div>
+                      </div> <!-- End Immune to Row -->
+                   
+                  </div> <!-- End Defense Dmg Profile -->
+
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+
+              </div> <!-- End Modal Content -->
+          </div> <!-- End Modal Dialog -->
+      </div> <!-- End Modal -->
+
+
+
           <!-- Class Names: 
                 Name- change innerHTML to #${pokeId} ${name}
                     .pokeName
@@ -67,7 +168,7 @@
         </div> -->
 
 
-        <!-- <div class="modal" tabindex="-1">
+        <div class="modal" tabindex="-1">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -83,7 +184,7 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
 
         <!-- Images/buttons of all Pokemon -->
         <div id="root" class="row g-4" data-bs-toggle="modal" data-bs-target="#pokeModal"></div>

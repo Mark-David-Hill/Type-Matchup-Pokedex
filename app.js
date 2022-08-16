@@ -84,6 +84,7 @@ const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
 root.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (clickedElement.id !== "root") {
+    myModal.show();
     let pokeName = '';
     let imgEl = U.getEl('pokeImage');
     console.log(imgEl)
@@ -100,7 +101,6 @@ root.addEventListener("click", (event) => {
       const pokeModal = U.getEl('modalContent');
       content = PD.makePokeCont(pokemon, allTypesData);
       // pokeModal.innerHTML = content;
-      myModal.show();
     })
   }
   
