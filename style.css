@@ -1,6 +1,10 @@
 .name-header {
     background-color: rgb(216, 216, 216);
 }
+.modalImage {
+    min-height: 480px;
+}
+
 .weak-to {
     background-color: #B4FFB2;
 }
