@@ -2,7 +2,26 @@
     background-color: rgb(216, 216, 216);
 }
 .modalImage {
-    min-height: 480px;
+    /* min-height: 480px; */
+    min-height: 350px;
+    max-width: 400px;
+}
+
+.modal-body {
+    position:relative; /* This avoids whatever it's absolute inside of it to go off the container */
+    height: 250px; /* let's imagine that your login box height is 250px . This height needs to be added, otherwise .img-responsive will be like "Oh no, I need to be vertically aligned?! but from which value I need to be aligned??" */
+}
+#pokeImage {
+    
+    width:350px; /* This value will depend on what size you want for your loading image, let's say it's 50px */
+     height: auto;
+     position:absolute;
+     left:50%;
+     /* top:50%; */
+     margin-top:-175px; /* This needs to be half of the height */
+     margin-left:-175px; /* This needs to be half of the width */
+     /* top: 250px; */
+     top: 225px;
 }
 
 .weak-to {
