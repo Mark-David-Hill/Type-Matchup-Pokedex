@@ -6,6 +6,7 @@ const getDmgProfile = require("./getDmgProfile");
 const defDmgTemplate = require("./defDmgTemplate");
 const displayWeakness = require("./displayWeakness");
 const displayResists = require("./displayResists");
+const displayImmunity = require("./displayImmunity");
 
 // Creates HTML content for the data of a given Pokemon
 module.exports = (pokemon, allTypesData) => {
@@ -61,6 +62,7 @@ module.exports = (pokemon, allTypesData) => {
 
   displayWeakness(dmgProfile);
   displayResists(dmgProfile);
+  displayImmunity(dmgProfile);
 
 
   let content = "";

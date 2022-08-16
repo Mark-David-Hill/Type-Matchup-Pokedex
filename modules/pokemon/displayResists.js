@@ -13,8 +13,6 @@ module.exports = (dmgProfile) => {
     // 
 
     if (x1fourth.length > 0 || x1half.length > 0) {
-        console.log('display test:')
-        console.log(resistsRowEl.style.display)
         resistsRowEl.style.display = ''
         let content = '';
 
@@ -48,7 +46,6 @@ module.exports = (dmgProfile) => {
 
     }
     else {
-        console.log('hide resists row')
         resistsRowEl.style.display = 'none'
     }
 }
