@@ -1,3 +1,9 @@
+html body {
+    padding-top: 130px;
+}
+.navBar {
+    background-color: #FF8888;
+}
 .name-header {
     background-color: rgb(216, 216, 216);
 }
