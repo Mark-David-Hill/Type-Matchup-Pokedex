@@ -19,6 +19,7 @@ module.exports = (dmgProfile) => {
 
     if (x1fourth.length > 0 || x1half.length > 0) {
         resistsRowEl.style.display = ''
+        resistsRowEl.classList.add('d-flex')
         let content = '';
 
         // 
@@ -71,5 +72,6 @@ module.exports = (dmgProfile) => {
     }
     else {
         resistsRowEl.style.display = 'none'
+        resistsRowEl.classList.remove('d-flex')
     }
 }

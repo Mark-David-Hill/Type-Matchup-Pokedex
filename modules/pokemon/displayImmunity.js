@@ -13,6 +13,7 @@ module.exports = (dmgProfile) => {
 
     if (x0.length > 0) {
         immuneToRowEl.style.display = ''
+        immuneToRowEl.classList.add('d-flex')
         let content = '';
         
         x0.forEach(type => {
@@ -26,5 +27,6 @@ module.exports = (dmgProfile) => {
     }
     else {
         immuneToRowEl.style.display = 'none'
+        immuneToRowEl.classList.remove('d-flex')
     }
 }

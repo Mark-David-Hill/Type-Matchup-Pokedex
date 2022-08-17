@@ -17,7 +17,7 @@
         <!--  -->
         <div class="modal fade" id="pokeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <!-- Modal Dialog -->
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-dialog">
                 <!-- Modal Content -->
                 <div id="modalContent" class="modal-content">
 
@@ -45,53 +45,54 @@
                         </div>
                     </div> <!-- End Name Row -->
 
+                    <!--  -->
                     <!-- Defense Dmg Profile -->
-                    <div>
+                    <!--  -->
                         
-                        <!-- Weak to Row -->
-                        <div id="weakToRow" class="row p-2 weak-to">
-                            <div class="col">
-                                <h4 class="pt-2">Weak To:</h4>
+                    <!-- Weak to Row -->
+                    <div id="weakToRow" class="d-flex flex-row p-2 weak-to">
+                        <div class="col">
+                            <h4 class="pt-2">Weak To:</h4>
+                        </div>
+                        <div class="col">
+                            <div id="weakToTypes" class="list-unstyled d-flex flex-row flex-wrap">
+                                <!-- x2 -->
+                                <li class="list-group-item shadow rounded text-center type rock p-1 m-1">rock</li><h4 id="x2" class="pt-2">x2</h4>
+                                <!-- x4 -->
+                                <li class="list-group-item shadow rounded text-center type electric p-1 m-1">electric</li><h4 id="x4" class="pt-2">x4</h4>        
                             </div>
-                            <div class="col">
-                                <div id="weakToTypes" class="list-unstyled d-flex flex-row flex-wrap">
-                                    <!-- x2 -->
-                                    <li class="list-group-item shadow rounded text-center type rock p-1 m-1">rock</li><h4 id="x2" class="pt-2">x2</h4>
-                                    <!-- x4 -->
-                                    <li class="list-group-item shadow rounded text-center type electric p-1 m-1">electric</li><h4 id="x4" class="pt-2">x4</h4>        
-                                </div>
+                        </div>
+                    </div> <!-- End Weak to Row -->
+                    
+                    <!-- Resistant to Row -->
+                    <div id="resistsRow" class="d-flex flex-row p-2 resists">
+                        <div class="col">
+                            <h4 class="pt-2">Resistant To:</h4>
+                        </div>
+                        <div class="col">
+                            <div id="resistsTypes" class="list-unstyled d-flex flex-row flex-wrap">
+                                <li class="list-group-item shadow rounded text-center type fire p-1 m-1">fire</li>
+                                <li class="list-group-item shadow rounded text-center type water p-1 m-1">water</li>
+                                <li class="list-group-item shadow rounded text-center type fighting p-1 m-1">fighting</li>
+                                <li class="list-group-item shadow rounded text-center type bug p-1 m-1">bug</li>
+                                <li class="list-group-item shadow rounded text-center type steel p-1 m-1">steel</li><h4 class="pt-2">x½</h4>        
                             </div>
-                        </div> <!-- End Weak to Row -->
-                        
-                        <!-- Resistant to Row -->
-                        <div id="resistsRow" class="row p-2 resists">
-                            <div class="col">
-                                <h4 class="pt-2">Resistant To:</h4>
-                            </div>
-                            <div class="col">
-                                <div id="resistsTypes" class="list-unstyled d-flex flex-row flex-wrap">
-                                    <li class="list-group-item shadow rounded text-center type fire p-1 m-1">fire</li>
-                                    <li class="list-group-item shadow rounded text-center type water p-1 m-1">water</li>
-                                    <li class="list-group-item shadow rounded text-center type fighting p-1 m-1">fighting</li>
-                                    <li class="list-group-item shadow rounded text-center type bug p-1 m-1">bug</li>
-                                    <li class="list-group-item shadow rounded text-center type steel p-1 m-1">steel</li><h4 class="pt-2">x½</h4>        
-                                </div>
-                            </div>
-                        </div> <!-- End Resistant to Row -->
+                        </div>
+                    </div> <!-- End Resistant to Row -->
 
-                        <!-- Immune to Row -->
-                        <div id="immuneToRow" class="row p-2 immune-to">
-                            <div class="col">
-                                <h4 class="pt-2">Immune To:</h4>
-                            </div>
-                            <div class="col">
-                                <ul id="immuneToTypes" class="list-unstyled d-flex flex-row flex-wrap">
-                                    <li class="shadow rounded text-center type ground p-1 m-1">ground</li><h4 class="pt-2">x0</h4>        
-                                </ul>
-                            </div>
-                        </div> <!-- End Immune to Row -->
+                    <!-- Immune to Row -->
+                    <div id="immuneToRow" class="d-flex flex-row p-2 immune-to">
+                        <div class="col">
+                            <h4 class="pt-2">Immune To:</h4>
+                        </div>
+                        <div class="col">
+                            <ul id="immuneToTypes" class="list-unstyled d-flex flex-row flex-wrap">
+                                <li class="shadow rounded text-center type ground p-1 m-1">ground</li><h4 class="pt-2">x0</h4>        
+                            </ul>
+                        </div>
+                    </div> <!-- End Immune to Row -->
                      
-                    </div> <!-- End Defense Dmg Profile -->
+                    
 
                     <!-- Modal Footer -->
                     <div class="modal-footer">

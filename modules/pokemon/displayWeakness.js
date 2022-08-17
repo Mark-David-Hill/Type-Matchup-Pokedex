@@ -16,6 +16,7 @@ module.exports = (dmgProfile) => {
 
     if (x2.length > 0 || x4.length > 0) {
         weakToRowEl.display = ''
+        weakToRowEl.classList.add('d-flex')
         let content = '';
 
         
@@ -53,5 +54,6 @@ module.exports = (dmgProfile) => {
     }
     else {
         weakToRowEl.display = 'none'
+        weakToRowEl.classList.remove('d-flex')
     }
 }
