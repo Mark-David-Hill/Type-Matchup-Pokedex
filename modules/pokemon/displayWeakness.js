@@ -18,19 +18,7 @@ module.exports = (dmgProfile) => {
         weakToRowEl.display = ''
         let content = '';
 
-        // 
-        // x2 Section
-        // 
-
-        if (x2.length > 0) {
-            content += `<div class="d-flex flex-row">`
-            x2.forEach(type => {
-                content += typeTemplate(type);
-            });
-            // add x2 text
-            content += '<h4 id="x2" class="pt-2">x2&nbsp</h4>'
-            content += `</div>`
-        }
+        
 
         // 
         // x4 Section
@@ -43,6 +31,20 @@ module.exports = (dmgProfile) => {
             });
             // add x4 text
             content += '<h4 id="x4" class="pt-2">x4</h4>';
+            content += `</div>`
+        }
+
+        // 
+        // x2 Section
+        // 
+
+        if (x2.length > 0) {
+            content += `<div class="d-flex flex-row">`
+            x2.forEach(type => {
+                content += typeTemplate(type);
+            });
+            // add x2 text
+            content += '<h4 id="x2" class="pt-2">x2&nbsp</h4>'
             content += `</div>`
         }
         

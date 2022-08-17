@@ -22,21 +22,6 @@ module.exports = (dmgProfile) => {
         let content = '';
 
         // 
-        // x1/4 Section
-        // 
-
-        if (x1fourth.length > 0) {
-            content += `<div class="d-flex flex-row">`
-            // x1fourth.display = 'block'
-            x1fourth.forEach(type => {
-                content += typeTemplate(type);
-            });
-            // add x2 text
-            content += '<h4 id="x1fourth" class="pt-2">x¼&nbsp</h4>'
-            content += `</div>`
-        }
-
-        // 
         // x1/2 Section
         // 
 
@@ -64,6 +49,21 @@ module.exports = (dmgProfile) => {
                 content += '<h4 id="x1half" class="pt-2">x½</h4>';
                 content += `</div>`
             }
+        }
+
+        // 
+        // x1/4 Section
+        // 
+
+        if (x1fourth.length > 0) {
+            content += `<div class="d-flex flex-row">`
+            // x1fourth.display = 'block'
+            x1fourth.forEach(type => {
+                content += typeTemplate(type);
+            });
+            // add x2 text
+            content += '<h4 id="x1fourth" class="pt-2">x¼&nbsp</h4>'
+            content += `</div>`
         }
         
         resistsTypesEl.innerHTML = content;
