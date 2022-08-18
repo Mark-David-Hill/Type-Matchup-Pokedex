@@ -1,6 +1,6 @@
 html body {
     padding-top: 130px;
-    padding-bottom: 130px;
+    padding-bottom: 100px;
 }
 .navBar {
     background-color: #FF8888;
@@ -8,7 +8,17 @@ html body {
 .name-header {
     background-color: rgb(216, 216, 216);
 }
+#search {
+    max-width: 600px;
+    /* margin-left: 2em; */
+}
+.modalImage {
+    min-height: 400px;
+}
 
+
+
+/* Damage Profile */
 .weak-to {
     background-color: #B4FFB2;
 }
@@ -19,6 +29,7 @@ html body {
     background-color: #FFB2B2;
 }
 
+/* Types */
 .type {
     color: white;
 }
