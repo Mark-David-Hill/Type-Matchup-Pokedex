@@ -84,10 +84,8 @@ const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
 root.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (clickedElement.id !== "root") {
-    myModal.show();
     let pokeName = '';
     let imgEl = U.getEl('pokeImage');
-    console.log(imgEl)
     imgEl.src = "https://via.placeholder.com/525x500"
     if (clickedElement.classList.contains('pokeImg')) {
       pokeName = clickedElement.id;
@@ -95,13 +93,24 @@ root.addEventListener("click", (event) => {
     else if (clickedElement.classList.contains('pokeBtn')) {
       pokeName = clickedElement.children[0].id; 
     }
-    PD.getPokemon(pokeName, allTypesData)
-    .then((response) => {
-      const pokemon = response;
-      const pokeModal = U.getEl('modalContent');
-      content = PD.makePokeCont(pokemon, allTypesData);
-      // pokeModal.innerHTML = content;
-    })
+
+    // Make sure pokeName has been successfully set
+    if (pokeName) {
+      // Reset modal content
+
+      // Begin to display modal
+      myModal.show();
+
+      PD.getPokemon(pokeName, allTypesData)
+      .then((response) => {
+        const pokemon = response;
+        const pokeModal = U.getEl('modalContent');
+        content = PD.makePokeCont(pokemon, allTypesData);
+        // pokeModal.innerHTML = content;
+      })
+    }
+
+    
   }
   
   
