@@ -99,12 +99,15 @@ const displayPokemon = (pokeName) => {
   }
 }
 
+// Click event when clicking Pokemon sprite buttons
 root.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (clickedElement.id !== "root") {
     let pokeName = '';
     let imgEl = U.getEl('pokeImage');
-    imgEl.src = "https://via.placeholder.com/525x500"
+    imgEl.src = ""
+    imgEl.style.display = 'none';
+    // imgEl.src = "https://via.placeholder.com/525x500"
     if (clickedElement.classList.contains('pokeImg')) {
       pokeName = clickedElement.id;
     } 
