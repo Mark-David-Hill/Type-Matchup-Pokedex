@@ -81,6 +81,24 @@ const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
 // Click between:
 // div#root.row.g-4, div.container, body.modal-open
 
+const displayPokemon = (pokeName) => {
+  // Make sure pokeName has been successfully set
+  if (pokeName) {
+    // Reset modal content
+
+    // Begin to display modal
+    myModal.show();
+
+    PD.getPokemon(pokeName, allTypesData)
+    .then((response) => {
+      const pokemon = response;
+      const pokeModal = U.getEl('modalContent');
+      content = PD.makePokeCont(pokemon, allTypesData);
+      // pokeModal.innerHTML = content;
+    })
+  }
+}
+
 root.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (clickedElement.id !== "root") {
@@ -94,29 +112,43 @@ root.addEventListener("click", (event) => {
       pokeName = clickedElement.children[0].id; 
     }
 
-    // Make sure pokeName has been successfully set
-    if (pokeName) {
-      // Reset modal content
-
-      // Begin to display modal
-      myModal.show();
-
-      PD.getPokemon(pokeName, allTypesData)
-      .then((response) => {
-        const pokemon = response;
-        const pokeModal = U.getEl('modalContent');
-        content = PD.makePokeCont(pokemon, allTypesData);
-        // pokeModal.innerHTML = content;
-      })
-    }
-
+    displayPokemon(pokeName);
     
   }
-  
-  
-  
-  // }
 });
+
+searchBar.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    // Check for exact match for Pokemon
+    let exactMatch = false;
+    let searchStr = searchBar.value.toLowerCase();
+    for (let i = 0; i < allPokemon.length; i++) {
+      const pokemon = allPokemon[i];
+      if (searchStr === pokemon.name) {
+        exactMatch = true;
+        break;
+      }
+    }
+    if (exactMatch) {
+      displayPokemon(searchStr)
+    }
+    // else {
+    //   const pokeImgs = root.getElementsByClassName('pokeImg');
+    //   pokeName = pokeImgs[0].id;
+    //   displayPokemon(pokeName);
+    // }
+  }
+});
+
+// module.exports = (allPokemon, searchBar) => {
+//   let searchStr = searchBar.value.toLowerCase();
+
+//   const checkSearch = (pokemon) => {
+//     return pokemon.name.includes(searchStr);
+//   }
+//   const filtered = allPokemon.filter(checkSearch);
+//   return filtered;
+// }
 
 
 // const cache = {};
