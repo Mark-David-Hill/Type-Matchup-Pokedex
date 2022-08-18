@@ -135,11 +135,11 @@ searchBar.addEventListener('keypress', function (e) {
     if (exactMatch) {
       displayPokemon(searchStr)
     }
-    // else {
-    //   const pokeImgs = root.getElementsByClassName('pokeImg');
-    //   pokeName = pokeImgs[0].id;
-    //   displayPokemon(pokeName);
-    // }
+    else {
+      const pokeImgs = root.getElementsByClassName('pokeImg');
+      pokeName = pokeImgs[0].id;
+      displayPokemon(pokeName);
+    }
   }
 });
 
