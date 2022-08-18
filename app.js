@@ -71,31 +71,48 @@ searchBar.oninput = search;
 // 
 
 const root = U.getEl('root');
-
 const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
 
-// Click image:
-// [img#bulbasaur, button.btn,
-// Click button:
-// [button.btn, div.card,
-// Click between:
-// div#root.row.g-4, div.container, body.modal-open
+
 
 const displayPokemon = (pokeName) => {
   // Make sure pokeName has been successfully set
   if (pokeName) {
     // Reset modal content
+    const pokeNameEl = U.getEl('pokeName');
+    pokeNameEl.innerText = ''
 
     // Begin to display modal
     myModal.show();
 
-    PD.getPokemon(pokeName, allTypesData)
-    .then((response) => {
-      const pokemon = response;
-      const pokeModal = U.getEl('modalContent');
-      content = PD.makePokeCont(pokemon, allTypesData);
-      // pokeModal.innerHTML = content;
-    })
+    const pokeTypesEl = U.getEl('pokeTypes')
+    pokeTypesEl.innerHTML = '';
+    const weakToTypesEl = U.getEl('weakToTypes');
+    const resistsTypesEl = U.getEl('resistsTypes');
+    const immuneToTypesEl = U.getEl('immuneToTypes');
+    const dmgLabels = document.getElementsByClassName('dmgLabel');
+    for (let i = 0; i < dmgLabels.length; i++) {
+      dmgLabels[i].classList.add('hideText');
+    }
+    weakToTypesEl.innerHTML = '';
+    resistsTypesEl.innerHTML = '';
+    immuneToTypesEl.innerHTML = '';
+
+    
+    // setTimeout(() => {
+      PD.getPokemon(pokeName, allTypesData)
+      .then((response) => {
+        const pokemon = response;
+        const pokeModal = U.getEl('modalContent');
+        for (let i = 0; i < dmgLabels.length; i++) {
+          dmgLabels[i].classList.remove('hideText');
+        }
+        content = PD.makePokeCont(pokemon, allTypesData);
+        // pokeModal.innerHTML = content;
+      })
+    // }, 2000)
+
+    
   }
 }
 
@@ -104,7 +121,7 @@ root.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (clickedElement.id !== "root") {
     let pokeName = '';
-    let imgEl = U.getEl('pokeImage');
+    const imgEl = U.getEl('pokeImage');
     imgEl.src = ""
     imgEl.style.display = 'none';
     // imgEl.src = "https://via.placeholder.com/525x500"
@@ -142,16 +159,6 @@ searchBar.addEventListener('keypress', function (e) {
     }
   }
 });
-
-// module.exports = (allPokemon, searchBar) => {
-//   let searchStr = searchBar.value.toLowerCase();
-
-//   const checkSearch = (pokemon) => {
-//     return pokemon.name.includes(searchStr);
-//   }
-//   const filtered = allPokemon.filter(checkSearch);
-//   return filtered;
-// }
 
 
 // const cache = {};

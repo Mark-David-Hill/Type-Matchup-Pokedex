@@ -7,13 +7,18 @@ html body {
 }
 .name-header {
     background-color: rgb(216, 216, 216);
+    min-height: 72px;
 }
 #search {
     max-width: 600px;
     /* margin-left: 2em; */
 }
 .modalImage {
-    min-height: 450px;
+    min-height: 300px;
+}
+
+.hideText {
+    font-size: 0;
 }
 
 
@@ -21,12 +26,15 @@ html body {
 /* Damage Profile */
 .weak-to {
     background-color: #B4FFB2;
+    min-height: 59px;
 }
 .resists {
     background-color: #FFD4D4;
+    min-height: 59px;
 }
 .immune-to {
     background-color: #FFB2B2;
+    min-height: 59px;
 }
 
 /* Types */

@@ -56,7 +56,7 @@ module.exports = (pokemon, allTypesData) => {
   pokeImageEl.src = `${image}`;
   pokeImageEl.alt = `${name}`;
   pokeImageEl.style.display = 'block';
-  pokeTypes.innerHTML = `${type1Cont}
+  pokeTypesEl.innerHTML = `${type1Cont}
   ${type2Cont}`;
   resistsTypesEl.innerHTML = '';
   immuneToTypesEl.innerHTML = '';
