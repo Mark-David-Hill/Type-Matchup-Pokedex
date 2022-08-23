@@ -102,11 +102,16 @@ const displayPokemon = (pokeName) => {
     const loadEls = document.getElementsByClassName('load');
     for (let i = 0; i < loadEls.length; i++) {
       const element = loadEls[i];
-      element.style.display = 'flex';
+      if (element.classList.contains('load-outer')) {
+        element.style.display = 'flex';
+      }
+      else if (window.screen.width >= 500) {
+        element.style.display = 'flex';
+      }
     }
 
     
-    // setTimeout(() => {
+    setTimeout(() => {
       PD.getPokemon(pokeName, allTypesData)
       .then((response) => {
         const pokemon = response;
@@ -121,7 +126,7 @@ const displayPokemon = (pokeName) => {
         }
         content = PD.makePokeCont(pokemon, allTypesData);
       })
-    // }, 2000)
+    }, 5000)
 
     
   }
