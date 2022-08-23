@@ -111,7 +111,7 @@ const displayPokemon = (pokeName) => {
     }
 
     
-    setTimeout(() => {
+    // setTimeout(() => {
       PD.getPokemon(pokeName, allTypesData)
       .then((response) => {
         const pokemon = response;
@@ -126,7 +126,7 @@ const displayPokemon = (pokeName) => {
         }
         content = PD.makePokeCont(pokemon, allTypesData);
       })
-    }, 5000)
+    // }, 5000)
 
     
   }
