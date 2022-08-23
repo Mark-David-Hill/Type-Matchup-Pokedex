@@ -98,17 +98,28 @@ const displayPokemon = (pokeName) => {
     resistsTypesEl.innerHTML = '';
     immuneToTypesEl.innerHTML = '';
 
+    // Display Load Animations
+    const loadEls = document.getElementsByClassName('load');
+    for (let i = 0; i < loadEls.length; i++) {
+      const element = loadEls[i];
+      element.style.display = 'flex';
+    }
+
     
     // setTimeout(() => {
       PD.getPokemon(pokeName, allTypesData)
       .then((response) => {
         const pokemon = response;
         const pokeModal = U.getEl('modalContent');
+        // Hide load animations
+        for (let i = 0; i < loadEls.length; i++) {
+          const element = loadEls[i];
+          element.style.display = 'none';
+        }
         for (let i = 0; i < dmgLabels.length; i++) {
           dmgLabels[i].classList.remove('hideText');
         }
         content = PD.makePokeCont(pokemon, allTypesData);
-        // pokeModal.innerHTML = content;
       })
     // }, 2000)
 
