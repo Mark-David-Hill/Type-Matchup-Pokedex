@@ -44,22 +44,103 @@ const initialize = async () => {
 }
 
 initialize();
-getAllTypesData();
+getAllTypesData()
+  setTimeout(() => {
+    console.log('All Types Data:')
+    console.log(allTypesData)
+  }, 3000)
+    
+  
 
 // 
 // Search Functionality
 // 
 
 const searchBar = U.getEl('search')
+const type1El = U.getEl('type1');
+const type2El = U.getEl('type2');
 
-// Function to run when user types in search bar
+// Clear selected types
+const clear = () => {
+  type1El.selectedIndex = 0;
+  type2El.selectedIndex = 0;
+  // Re-runs the filter/displays results
+  search();
+}
+
+const clearBtnEl = U.getEl('clearBtn');
+clearBtnEl.addEventListener("click", clear);
+
+
+
+// Function to run when user types in search bar or changes type
 const search = () => {
   if (allPokemon) {
+    // Filter by Search String
     const filteredList = PD.pokeSearch(allPokemon, searchBar);
-    const content = PD.makeFiltCont(filteredList);
-    // Display Pokemon data based on search
-    const root = U.getEl('root');
-    root.innerHTML = content;
+    let finalList = null;
+    // 
+    // Filter by Type
+    // 
+    if (type1El.value !== "none" || type2El.value !== "none") {
+      let type1Pokemon = null;
+      let type2Pokemon = null;
+      let typePokemon = null;
+      // Type1
+      if (type1El.value !== "none") {
+        const type1 = type1El.value;
+        const type1Id = PD.getTypeId(type1);
+        const type1Data = allTypesData[type1Id];
+        type1Pokemon = PD.getTypePokemon(type1Data);
+      }
+      // Type2
+      if (type2El.value !== "none") {
+        const type2 = type2El.value;
+        const type2Id = PD.getTypeId(type2);
+        const type2Data = allTypesData[type2Id];
+        type2Pokemon = PD.getTypePokemon(type2Data);
+      }
+      
+      if (type1Pokemon && type2Pokemon) {
+        typePokemon = [];
+        type1Pokemon.forEach(pokemon => {
+          if (type2Pokemon.includes(pokemon)) {
+            typePokemon.push(pokemon);
+          }
+        });
+      }
+      else if (type1Pokemon) {
+        typePokemon = type1Pokemon;
+      }
+      else if (type2Pokemon) {
+        typePokemon = type2Pokemon;
+      }
+
+      // Filter Search filtered list of Pokemon based on if they have the specified types
+
+      const checkTypePokemon = (pokemonToCheck) => {
+        let includePokemon = false;
+        typePokemon.forEach(tp => {
+          if (pokemonToCheck.name.includes(tp)) {
+            includePokemon = true;
+          }
+        });
+        return includePokemon;
+      }
+      const typeFiltered = filteredList.filter(checkTypePokemon);
+      finalList = typeFiltered;
+    }
+    // If no types are selected, just use search string filtered list
+    else {
+      finalList = filteredList;
+    }
+
+    if(finalList) {
+      const content = PD.makeFiltCont(finalList);
+      // Display Pokemon data based on search
+      const root = U.getEl('root');
+      root.innerHTML = content;
+    }
   }
 }
 
@@ -153,6 +234,10 @@ root.addEventListener("click", (event) => {
   }
 });
 
+type1El.addEventListener("change", search);
+type2El.addEventListener("change", search);
+
+// Event for When 'Enter' is pressed in the Search Bar
 searchBar.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     // Check for exact match for Pokemon

@@ -72,6 +72,16 @@ html body {
 .type {
     color: white;
 }
+.type-button {
+    margin-right: 1em;
+    margin-bottom: 1em;
+    border: none;
+    /* padding: 0.5em; */
+}
+
+/* .type-button :hover {
+    background-color: #78C850;
+} */
 .normal {
     background-color: #A8A878;
 }
@@ -125,4 +135,8 @@ html body {
 }
 .fairy {
     background-color: #EE99AC;
+}
+
+.tb-on {
+    border: solid 3px black;
 }

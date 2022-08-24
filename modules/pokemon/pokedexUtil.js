@@ -9,6 +9,7 @@ const pokeSearch = require('./pokeSearch');
 const makeFiltCont = require('./makeFiltCont');
 const makePokeCont = require('./makePokeCont');
 const getTypeId = require('./getTypeId');
+const getTypePokemon = require('./getTypePokemon');
 
 module.exports = {
     getPokemon: getPokemon,
@@ -21,5 +22,6 @@ module.exports = {
     pokeSearch: pokeSearch,
     makeFiltCont: makeFiltCont,
     makePokeCont: makePokeCont,
-    getTypeId: getTypeId
+    getTypeId: getTypeId,
+    getTypePokemon: getTypePokemon
 };
