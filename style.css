@@ -78,6 +78,9 @@ html body {
     border: none;
     /* padding: 0.5em; */
 }
+.type-select {
+    max-width: 200px;
+}
 
 /* .type-button :hover {
     background-color: #78C850;

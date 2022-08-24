@@ -12,11 +12,12 @@ const P = new Pokedex.Pokedex();
 
 let allPokemon = undefined;
 let allTypesData = null;
+const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
 
 // Get Type Data
 const getAllTypesData = async () => {
   try {
-    const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
+    // const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
 
     let promises = [];
     // Create array of promises for retrieving type data
@@ -79,6 +80,17 @@ const search = () => {
     // Filter by Search String
     const filteredList = PD.pokeSearch(allPokemon, searchBar);
     let finalList = null;
+
+    // Reset styling for Type Selections
+    const typeBtns = [type1El, type2El];
+    // Remove type classes
+    typeBtns.forEach(typeEl => {
+      typeEl.classList.remove('type')
+      types.forEach(type => {
+        typeEl.classList.remove(type);
+      });
+    });
+
     // 
     // Filter by Type
     // 
@@ -90,6 +102,10 @@ const search = () => {
       if (type1El.value !== "none") {
         const type1 = type1El.value;
         const type1Id = PD.getTypeId(type1);
+        // Set type1 selection style
+        type1El.classList.add('type')
+        type1El.classList.add(type1)
+
         const type1Data = allTypesData[type1Id];
         type1Pokemon = PD.getTypePokemon(type1Data);
       }
@@ -97,6 +113,10 @@ const search = () => {
       if (type2El.value !== "none") {
         const type2 = type2El.value;
         const type2Id = PD.getTypeId(type2);
+        // Set type1 selection style
+        type2El.classList.add('type')
+        type2El.classList.add(type2)
+
         const type2Data = allTypesData[type2Id];
         type2Pokemon = PD.getTypePokemon(type2Data);
       }
