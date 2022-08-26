@@ -1,5 +1,5 @@
 html body {
-    padding-top: 130px;
+    padding-top: 190px;
     padding-bottom: 100px;
 }
 .navBar {
@@ -9,10 +9,38 @@ html body {
     background-color: rgb(216, 216, 216);
     min-height: 72px;
 }
-#search {
-    max-width: 600px;
-    /* margin-left: 2em; */
+
+#title {
+    margin-right: 1em;
 }
+
+
+#clearBtn2 {
+    display: none;
+}
+
+
+/* Medium */
+@media only screen and (max-width: 500px) {
+    /* Hide navBar clearBtn if screen is too small */
+    #clearBtn {
+        display: none;
+    }
+    #clearBtn2 {
+        display: block;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    /* Hide navBar clearBtn if screen is too small */
+    #clearBtn {
+        display: none;
+    }
+}
+
+
+
 .modalImage {
     min-height: 300px;
 }

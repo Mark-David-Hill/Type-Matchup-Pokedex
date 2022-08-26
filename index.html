@@ -108,21 +108,90 @@
             </div> <!-- End Modal Dialog -->
         </div> <!-- End Modal -->
 
+        <!--  -->
         <!-- Nav Bar -->
-        <div class="row g-4 fixed-top navBar">
-            <div class="col mt-3">
-                <div class="input-group mb-3 mt-4 mx-4">
-                    <input id="search" type="text" class="form-control" placeholder="Search" aria-label="SearchBar" aria-describedby="basic-addon1">
+        <!--  -->
+
+        <div class="fixed-top navBar">
+            <!--  -->
+            <!-- Name Row -->
+            <!--  -->
+            <div class="row">
+                
+                <!-- <div id="hamburgerBtn" class="col m-1">
+                    <button class="btn btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#searchRow,#type1,#type2,#clearBtn" aria-expanded="false" aria-controls="collapseExample">☰</button>
+                </div> -->
+                <div id="title" class="col px-2">
+                    <h1 class="text-center mt-2">Type-Matchup Pokedex</h1>
                 </div>
-            </div>
-            
-            <!-- <div class="col">
-                <button>☰</button>
-            </div> -->
-            <div class="col">
-                <h1 class="text-center">Type-Matchup Pokedex</h1>
+            </div> <!-- End Name Row -->
+
+            <!--  -->
+            <!-- Search and Filter Row -->
+            <!--  -->
+            <div class="d-flex flex-row p-3 flex-wrap flex-md-nowrap">
+
+                <!-- Search Bar -->
+                <!-- <div class="col"> -->
+                    <div class="input-group mx-3 mb-md-0 mb-3" id="searchRow">
+                        <input id="search" type="text" class="form-control" placeholder="Search">
+                    </div>
+                <!-- </div> -->
+                
+                <!-- Type Filter Buttons -->
+                <!-- Type 1 -->
+                <!-- form-select-lg -->
+                <select class="form-select-lg mx-4 mx-md-2 my-1 my-md-0" id="type1">
+                    <option value="none" selected>Type 1</option>
+                    <option class="type normal" value="normal">Normal</option>
+                    <option class="type fighting" value="fighting">Fighting</option>
+                    <option class="type flying" value="flying">Flying</option>
+                    <option class="type poison" value="poison">Poison</option>
+                    <option class="type ground" value="ground">Ground</option>
+                    <option class="type rock" value="rock">Rock</option>
+                    <option class="type bug" value="bug">Bug</option>
+                    <option class="type ghost" value="ghost">Ghost</option>
+                    <option class="type steel" value="steel">Steel</option>
+                    <option class="type fire" value="fire">Fire</option>
+                    <option class="type water" value="water">Water</option>
+                    <option class="type grass" value="grass">Grass</option>
+                    <option class="type electric" value="electric">Electric</option>
+                    <option class="type psychic" value="psychic">Psychic</option>
+                    <option class="type ice" value="ice">Ice</option>
+                    <option class="type dragon" value="dragon">Dragon</option>
+                    <option class="type dark" value="dark">Dark</option>
+                    <option class="type fairy" value="fairy">Fairy</option>
+                </select>
+                <!-- Type 2 -->
+                <select class="form-select-lg mx-4 mx-md-2 my-1 my-md-0" id="type2">
+                    <option value="none" selected>Type 2</option>
+                    <option class="type normal" value="normal">Normal</option>
+                    <option class="type fighting" value="fighting">Fighting</option>
+                    <option class="type flying" value="flying">Flying</option>
+                    <option class="type poison" value="poison">Poison</option>
+                    <option class="type ground" value="ground">Ground</option>
+                    <option class="type rock" value="rock">Rock</option>
+                    <option class="type bug" value="bug">Bug</option>
+                    <option class="type ghost" value="ghost">Ghost</option>
+                    <option class="type steel" value="steel">Steel</option>
+                    <option class="type fire" value="fire">Fire</option>
+                    <option class="type water" value="water">Water</option>
+                    <option class="type grass" value="grass">Grass</option>
+                    <option class="type electric" value="electric">Electric</option>
+                    <option class="type psychic" value="psychic">Psychic</option>
+                    <option class="type ice" value="ice">Ice</option>
+                    <option class="type dragon" value="dragon">Dragon</option>
+                    <option class="type dark" value="dark">Dark</option>
+                    <option class="type fairy" value="fairy">Fairy</option>
+                </select>
+                <!-- NavBar Clear Button -->
+                <button class="btn btn-light btn-lg mx-4 mx-md-2 my-1 my-md-0" id="clearBtn">Clear</button>
             </div>
         </div>
+
+        <!-- Mobile Clear Button -->
+        <button class="btn btn-secondary btn-lg m-3" id="clearBtn2">Clear</button>
+        
         <!-- Search Bar -->
         <!-- <div class="row">
             <div class="input-group mb-3">
@@ -130,57 +199,9 @@
             </div>
         </div> -->
 
-        <!--  -->
-        <!-- Type Filter Buttons -->
-        <!--  -->
-
-        <!-- Type 1 -->
-        <!-- class="form-select-lg mb-3" -->
-        <select class="form-select-lg mb-3" id="type1">
-            <option value="none" selected>Type 1</option>
-            <option class="type normal" value="normal">Normal</option>
-            <option class="type fighting" value="fighting">Fighting</option>
-            <option class="type flying" value="flying">Flying</option>
-            <option class="type poison" value="poison">Poison</option>
-            <option class="type ground" value="ground">Ground</option>
-            <option class="type rock" value="rock">Rock</option>
-            <option class="type bug" value="bug">Bug</option>
-            <option class="type ghost" value="ghost">Ghost</option>
-            <option class="type steel" value="steel">Steel</option>
-            <option class="type fire" value="fire">Fire</option>
-            <option class="type water" value="water">Water</option>
-            <option class="type grass" value="grass">Grass</option>
-            <option class="type electric" value="electric">Electric</option>
-            <option class="type psychic" value="psychic">Psychic</option>
-            <option class="type ice" value="ice">Ice</option>
-            <option class="type dragon" value="dragon">Dragon</option>
-            <option class="type dark" value="dark">Dark</option>
-            <option class="type fairy" value="fairy">Fairy</option>
-        </select>
-        <!-- Type 2 -->
-        <select class="form-select-lg mb-3" id="type2">
-            <option value="none" selected>Type 2</option>
-            <option class="type normal" value="normal">Normal</option>
-            <option class="type fighting" value="fighting">Fighting</option>
-            <option class="type flying" value="flying">Flying</option>
-            <option class="type poison" value="poison">Poison</option>
-            <option class="type ground" value="ground">Ground</option>
-            <option class="type rock" value="rock">Rock</option>
-            <option class="type bug" value="bug">Bug</option>
-            <option class="type ghost" value="ghost">Ghost</option>
-            <option class="type steel" value="steel">Steel</option>
-            <option class="type fire" value="fire">Fire</option>
-            <option class="type water" value="water">Water</option>
-            <option class="type grass" value="grass">Grass</option>
-            <option class="type electric" value="electric">Electric</option>
-            <option class="type psychic" value="psychic">Psychic</option>
-            <option class="type ice" value="ice">Ice</option>
-            <option class="type dragon" value="dragon">Dragon</option>
-            <option class="type dark" value="dark">Dark</option>
-            <option class="type fairy" value="fairy">Fairy</option>
-        </select>
-        <!-- Clear Button -->
-        <button id="clearBtn">Clear</button>
+        
+        
+        
 
         <!-- Images/buttons of all Pokemon -->
         <div id="root" class="row g-4"></div>

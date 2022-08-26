@@ -57,7 +57,8 @@ getAllTypesData()
 // Search Functionality
 // 
 
-const searchBar = U.getEl('search')
+const searchBar = U.getEl('search');
+const hamburgerBtn = U.getEl('hamburgerBtn');
 const type1El = U.getEl('type1');
 const type2El = U.getEl('type2');
 
@@ -65,12 +66,15 @@ const type2El = U.getEl('type2');
 const clear = () => {
   type1El.selectedIndex = 0;
   type2El.selectedIndex = 0;
+  searchBar.value = "";
   // Re-runs the filter/displays results
   search();
 }
 
 const clearBtnEl = U.getEl('clearBtn');
+const clearBtn2El = U.getEl('clearBtn2');
 clearBtnEl.addEventListener("click", clear);
+clearBtn2El.addEventListener("click", clear);
 
 
 
