@@ -17,7 +17,6 @@ const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting'
 // Get Type Data
 const getAllTypesData = async () => {
   try {
-    // const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
 
     let promises = [];
     // Create array of promises for retrieving type data
@@ -26,10 +25,8 @@ const getAllTypesData = async () => {
     }
     
     await Promise.all(promises).then((results) => {
-        // allTypesData = results;
-        // console.log('new all types data test in app.js:')
-        // console.log(results);
         allTypesData = results;
+        search();
     });
   }
   catch(err){
