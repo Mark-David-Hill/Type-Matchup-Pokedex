@@ -26,6 +26,8 @@ const getAllTypesData = async () => {
     
     await Promise.all(promises).then((results) => {
         allTypesData = results;
+        console.log('All Types Data:');
+        console.log(allTypesData);
         search();
     });
   }
@@ -43,12 +45,6 @@ const initialize = async () => {
 
 initialize();
 getAllTypesData()
-  setTimeout(() => {
-    console.log('All Types Data:')
-    console.log(allTypesData)
-  }, 3000)
-    
-  
 
 // 
 // Search Functionality
@@ -72,7 +68,6 @@ const clearBtnEl = U.getEl('clearBtn');
 const clearBtn2El = U.getEl('clearBtn2');
 clearBtnEl.addEventListener("click", clear);
 clearBtn2El.addEventListener("click", clear);
-
 
 
 // Function to run when user types in search bar or changes type
@@ -212,7 +207,7 @@ const displayPokemon = (pokeName) => {
       }
     }
 
-    
+    // Uncomment below to check loading styles
     // setTimeout(() => {
       PD.getPokemon(pokeName, allTypesData)
       .then((response) => {
@@ -228,6 +223,7 @@ const displayPokemon = (pokeName) => {
         }
         content = PD.makePokeCont(pokemon, allTypesData);
       })
+    // Uncomment below to check loading styles
     // }, 5000)
 
     
