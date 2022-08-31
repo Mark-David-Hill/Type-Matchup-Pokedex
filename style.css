@@ -151,6 +151,15 @@ html body {
     max-width: 200px;
 }
 
+#noType {
+    color: white;
+    background-color: black;
+}
+
+.noType {
+    background-color: black;
+}
+
 /* .type-button :hover {
     background-color: #78C850;
 } */

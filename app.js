@@ -12,6 +12,7 @@ const P = new Pokedex.Pokedex();
 
 let allPokemon = undefined;
 let allTypesData = null;
+let singleTypedPokemon = null;
 const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
 
 // Get Type Data
@@ -29,6 +30,7 @@ const getAllTypesData = async () => {
         console.log('All Types Data:');
         console.log(allTypesData);
         search();
+        singleTypedPokemon = PD.getSingleTyped(allTypesData);
     });
   }
   catch(err){
@@ -82,6 +84,7 @@ const search = () => {
     // Remove type classes
     typeBtns.forEach(typeEl => {
       typeEl.classList.remove('type')
+      typeEl.classList.remove('noType')
       types.forEach(type => {
         typeEl.classList.remove(type);
       });
@@ -106,7 +109,7 @@ const search = () => {
         type1Pokemon = PD.getTypePokemon(type1Data);
       }
       // Type2
-      if (type2El.value !== "none") {
+      if (type2El.value !== "none" && type2El.value !== "noType") {
         const type2 = type2El.value;
         const type2Id = PD.getTypeId(type2);
         // Set type1 selection style
@@ -126,7 +129,19 @@ const search = () => {
         });
       }
       else if (type1Pokemon) {
-        typePokemon = type1Pokemon;
+        // If the Pokemon is single-typed
+        if (type2El.value === 'noType') {
+          const isSingleTyped = (pokemon) => {
+            const result = singleTypedPokemon.includes(pokemon);
+            return result;
+          }
+
+          typePokemon = type1Pokemon.filter(isSingleTyped);
+        }
+        // The Pokemon can have 1 or 2 types
+        else {
+          typePokemon = type1Pokemon;
+        }
       }
       else if (type2Pokemon) {
         typePokemon = type2Pokemon;
@@ -149,15 +164,6 @@ const search = () => {
     // If no types are selected, just use search string filtered list
     else {
       finalList = filteredList;
-    }
-
-    console.log('final list:')
-    console.log(finalList)
-    if(finalList.length > 0) {
-      console.log("there's things")
-    }
-    else {
-      console.log('no things')
     }
 
     if(finalList) {

@@ -10,6 +10,7 @@ const makeFiltCont = require('./makeFiltCont');
 const makePokeCont = require('./makePokeCont');
 const getTypeId = require('./getTypeId');
 const getTypePokemon = require('./getTypePokemon');
+const getSingleTyped = require('./getSingleTyped');
 
 module.exports = {
     getPokemon: getPokemon,
@@ -23,5 +24,6 @@ module.exports = {
     makeFiltCont: makeFiltCont,
     makePokeCont: makePokeCont,
     getTypeId: getTypeId,
-    getTypePokemon: getTypePokemon
+    getTypePokemon: getTypePokemon,
+    getSingleTyped: getSingleTyped
 };
