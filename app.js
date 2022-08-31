@@ -93,7 +93,7 @@ const search = () => {
     // 
     // Filter by Type
     // 
-    if (type1El.value !== "none" || type2El.value !== "none") {
+    if (type1El.value !== "none" || (type2El.value !== "none") && type2El.value !== "noType") {
       let type1Pokemon = null;
       let type2Pokemon = null;
       let typePokemon = null;
@@ -158,6 +158,7 @@ const search = () => {
         });
         return includePokemon;
       }
+      
       const typeFiltered = filteredList.filter(checkTypePokemon);
       finalList = typeFiltered;
     }
