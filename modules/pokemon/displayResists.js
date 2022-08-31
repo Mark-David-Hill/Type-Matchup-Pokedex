@@ -27,29 +27,29 @@ module.exports = (dmgProfile) => {
         // 
 
         if (x1half.length > 0) {
-            if (split === true) {
-                content += `<div class="d-flex flex-row">`
-                for (let i = 0; i < x1half.length; i++) {
-                    const type = x1half[i]
-                    content += typeTemplate(type);
-                    if (i === 4) {
-                        content += `</div>`
-                        content += `<div class="d-flex flex-row">`
-                    }
-                }
-                // add x1half text
-                content += '<h4 id="x1half" class="pt-2">x½</h4>';
-                content += `</div>`
-            }
-            else {
-                content += `<div class="d-flex flex-row">`
+            // if (split === true) {
+            //     content += `<div class="d-flex flex-row flex-wrap">`
+            //     for (let i = 0; i < x1half.length; i++) {
+            //         const type = x1half[i]
+            //         content += typeTemplate(type);
+            //         if (i === 4) {
+            //             content += `</div>`
+            //             content += `<div class="d-flex flex-row flex-wrap">`
+            //         }
+            //     }
+            //     // add x1half text
+            //     content += '<h4 id="x1half" class="pt-2">x½</h4>';
+            //     content += `</div>`
+            // }
+            // else {
+                content += `<div class="d-flex flex-row flex-wrap">`
                 x1half.forEach(type => {
                     content += typeTemplate(type);
                 });
                 // add x1half text
                 content += '<h4 id="x1half" class="pt-2">x½</h4>';
                 content += `</div>`
-            }
+            // }
         }
 
         // 

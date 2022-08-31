@@ -40,7 +40,7 @@ module.exports = (dmgProfile) => {
         // 
 
         if (x2.length > 0) {
-            content += `<div class="d-flex flex-row">`
+            content += `<div class="d-flex flex-row flex-wrap">`
             x2.forEach(type => {
                 content += typeTemplate(type);
             });

@@ -53,7 +53,6 @@ getAllTypesData()
 // 
 
 const searchBar = U.getEl('search');
-const hamburgerBtn = U.getEl('hamburgerBtn');
 const type1El = U.getEl('type1');
 const type2El = U.getEl('type2');
 
