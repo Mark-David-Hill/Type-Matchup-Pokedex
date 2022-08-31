@@ -151,8 +151,26 @@ const search = () => {
       finalList = filteredList;
     }
 
+    console.log('final list:')
+    console.log(finalList)
+    if(finalList.length > 0) {
+      console.log("there's things")
+    }
+    else {
+      console.log('no things')
+    }
+
     if(finalList) {
-      const content = PD.makeFiltCont(finalList);
+      let content = '';
+      const resultsEl = U.getEl('results');
+      if (finalList.length > 0) {
+        const numResults = finalList.length;
+        resultsEl.innerText = `Showing ${numResults} Results`
+        content += PD.makeFiltCont(finalList);
+      }
+      else {
+        resultsEl.innerText = '0 Results. No Pokémon match those criteria'
+      }
       // Display Pokemon data based on search
       const root = U.getEl('root');
       root.innerHTML = content;
