@@ -78,6 +78,14 @@ const search = () => {
     const filteredList = PD.pokeSearch(allPokemon, searchBar);
     let finalList = null;
 
+    // Set disabled state for the Type2 Selector based on if Type1 has been selected.
+    if (type1El.value !== "none") {
+      type2El.disabled = false;
+    }
+    else {
+      type2El.disabled = true;
+    }
+
     // Reset styling for Type Selections
     const typeBtns = [type1El, type2El];
     // Remove type classes
