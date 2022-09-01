@@ -118,7 +118,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>This is a <a href="https://www.pokemon.com/" target="_blank" rel="noopener noreferrer">Pokémon</a> fan website made by <a href="https://mark-david-hill.github.io/" target="_blank" rel="noopener noreferrer">Mark David Hill</a> to practice Asynchronous JavaScript and working with API's. It makes use of data hosted by the very useful <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a> to dynamically generate content about Pokémon and their types, weaknesses, resistances, and immunities.</p>
+                    <p>This is a <a href="https://www.pokemon.com/" target="_blank" rel="noopener noreferrer">Pokémon</a> fan website made by <a href="https://mark-david-hill.github.io/" target="_blank" rel="noopener noreferrer">Mark David Hill</a> to practice Asynchronous JavaScript and working with API's. It makes use of data hosted by the <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a> to dynamically generate content about Pokémon and their types, weaknesses, resistances, and immunities.</p>
                     <p>I noticed that when my wife and I were playing Pokémon games, especially the later ones featuring a wide variety of type combinations, we were often trying to look up the weaknesses, resistances, and immunities of Pokémon we encountered. We could find the information, but we someitmes had to dig around longer than we would have liked. I wanted a single place where we could quickly find the information we were looking for all in a consistent format.</p>
                     <p>Pokémon is Copyrighted by <a href="https://www.nintendo.com/" target="_blank" rel="noopener noreferrer">Nintendo</a>, <a href="https://www.creatures.co.jp/en/" target="_blank" rel="noopener noreferrer">Creatures Inc.</a>, and <a href="https://www.gamefreak.co.jp/" target="_blank" rel="noopener noreferrer">GAME FREAK inc.</a> Pokémon and Pokémon character names are trademarks of Nintendo.</p>
                 </div>
@@ -229,7 +229,7 @@
         <!--  -->
         <!-- Root - for Pokemon sprite buttons -->
         <!--  -->
-
+        
         <div id="root" class="row g-4"></div>
 
         <!-- Divider -->
@@ -240,16 +240,22 @@
         <!--  -->
         
         <footer class="d-flex flex-wrap justify-content-evenly align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-                </a>
-                <p class="text-muted text-center">Website © 2022 Mark David Hill,<br>made using the PokeAPI</p>
-                <span class="text-muted"></span>
+            <div class="row">
+                <div class="col-md-4 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                    </a>
+                    <p class="text-muted">Website © 2022 Mark David Hill, made using the PokeAPI</p>
+                    <span class="text-muted"></span>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                    <p class="text-muted">Pokémon is Copyrighted by Nintendo, Creatures Inc., and GAME FREAK inc.</p>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                    <p class="text-muted">Pokémon and Pokémon character names are trademarks of Nintendo.</p>
+                </div>
             </div>
-            <div class="col-md-4 d-flex align-items-center">
-                <p class="text-muted text-center">Pokémon is Copyrighted by Nintendo, Creatures Inc., and GAME FREAK inc. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
-            </div>
+            
         
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                 <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
