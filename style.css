@@ -21,10 +21,18 @@ html body {
     padding-top: 290px;
     padding-bottom: 100px;
 }
+
+#root {
+    min-height: 300px;
+}
+
 /* 290px wide */
 @media only screen and (min-width: 290px) {
     html body {
         padding-top: 270px;
+    }
+    #root {
+        min-height: 400px;
     }
 }
 /* 326px wide */
@@ -32,11 +40,17 @@ html body {
     html body {
         padding-top: 220px;
     }
+    #root {
+        min-height: 450px;
+    }
 }
 /* 768px wide */
 @media only screen and (min-width: 768px) {
     html body {
         padding-top: 170px;
+    }
+    #root {
+        min-height: 600px;
     }
 }
 
