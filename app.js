@@ -294,20 +294,37 @@ const displayPokemon = (pokeName) => {
 
     // Uncomment below to check loading styles
     // setTimeout(() => {
-      PD.getPokemon(pokeName, allTypesData)
-      .then((response) => {
-        const pokemon = response;
-        const pokeModal = U.getEl('modalContent');
+      try {
+        PD.getPokemon(pokeName, allTypesData)
+        .then((response) => {
+          const pokemon = response;
+          const pokeModal = U.getEl('modalContent');
+          // Hide load animations
+          for (let i = 0; i < loadEls.length; i++) {
+            const element = loadEls[i];
+            element.style.display = 'none';
+          }
+          for (let i = 0; i < dmgLabels.length; i++) {
+            dmgLabels[i].classList.remove('hideText');
+          }
+          content = PD.makePokeCont(pokemon, allTypesData);
+        })
+      } catch (error) {
+        console.log('Error: Data could not be retrieved from the Poke API.')
+        console.log(error);
         // Hide load animations
         for (let i = 0; i < loadEls.length; i++) {
           const element = loadEls[i];
           element.style.display = 'none';
         }
-        for (let i = 0; i < dmgLabels.length; i++) {
-          dmgLabels[i].classList.remove('hideText');
-        }
-        content = PD.makePokeCont(pokemon, allTypesData);
-      })
+        // Display error to screen
+        const modalErrorEl = U.getEl('modalError');
+        const content = `<p class="text-center">Something went wrong, we weren't able to load this data from the Poke API. Please try reloading the Pokémon or refreshing the page.</p>`
+        modalErrorEl.innerHTML = content;
+        modalErrorEl.classList.remove('d-none');
+        modalErrorEl.classList.add('d-block');
+      }
+      
     // Uncomment below to check loading styles
     // }, 5000)
 
