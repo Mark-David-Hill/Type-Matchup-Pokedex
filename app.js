@@ -159,13 +159,13 @@ const search = () => {
       const checkTypePokemon = (pokemonToCheck) => {
         let includePokemon = false;
         typePokemon.forEach(tp => {
-          if (pokemonToCheck.name.includes(tp)) {
+          if (pokemonToCheck.name === tp) {
             includePokemon = true;
           }
         });
         return includePokemon;
       }
-      
+
       const typeFiltered = filteredList.filter(checkTypePokemon);
       finalList = typeFiltered;
     }
