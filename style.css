@@ -6,6 +6,11 @@
     min-height: 72px;
 }
 
+#aboutBtn {
+    font-size: x-small;
+    background-color: #eb9b94;
+}
+
 #title {
     margin-right: 1em;
 }
