@@ -18,13 +18,11 @@ let singleTypedPokemon = null;
 if (localStorage.allPokemon) {
   rawData = localStorage.getItem('allPokemon');
   allPokemon = JSON.parse(rawData);
-  console.log('retrieve all pokemon from local storage')
 }
 // All Types Data
 if (localStorage.allTypesData) {
   rawData = localStorage.getItem('allTypesData');
   allTypesData = JSON.parse(rawData);
-  console.log('retrieve all types data from local storage')
 }
 
 // 
@@ -71,6 +69,9 @@ const initialize = async () => {
 initialize();
 if (!allTypesData) {
   getAllTypesData();
+}
+else {
+  singleTypedPokemon = PD.getSingleTyped(allTypesData);
 }
 
 
@@ -165,7 +166,13 @@ const search = () => {
         // If the Pokemon is single-typed
         if (type2El.value === 'noType') {
           const isSingleTyped = (pokemon) => {
-            const result = singleTypedPokemon.includes(pokemon);
+            let result = false;
+            singleTypedPokemon.forEach(stp => {
+              if (stp === pokemon) {
+                result = true;
+              }
+            });
+            // result = singleTypedPokemon.includes(pokemon);
             return result;
           }
 
