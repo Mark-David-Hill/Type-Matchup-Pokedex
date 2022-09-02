@@ -14,6 +14,8 @@ let singleTypedPokemon = null;
 // Local Storage
 // 
 
+// localStorage.removeItem('allPokemon');
+
 // All Pokemon Data
 if (localStorage.allPokemon) {
   rawData = localStorage.getItem('allPokemon');
@@ -58,15 +60,33 @@ const getAllTypesData = async () => {
 
 // Get all Pokemon Data / display to screen
 const initialize = async () => {
-  const pokeData = await PD.getAllPokemon();
+  // Request data from Poke API if not in local storage
   if (!allPokemon) {
-    allPokemon = PD.makePokeArray(pokeData);
+    try {
+      const pokeData = await PD.getAllPokemon();
+      allPokemon = PD.makePokeArray(pokeData);
+      localStorage.setItem('allPokemon', JSON.stringify(allPokemon));
+    } catch (error) {
+      console.log('Error: Data could not be retrieved from the Poke API.')
+      console.log(error);
+    }
   }
-  localStorage.setItem('allPokemon', JSON.stringify(allPokemon));
-  PD.displayAllPokemon(allPokemon);
+  // Change justification for root element before loading spinner is replaced w/Poke data
+  const root = U.getEl('root');
+  if (allPokemon) {
+    root.classList.remove('justify-content-center');
+    PD.displayAllPokemon(allPokemon);
+  }
+  else {
+    const content = `<p class="text-center">Something went wrong, we weren't able to load this data from the Poke API. Please try refreshing the page.</p>`
+    root.innerHTML = content;
+  }
 }
 
-initialize();
+// setTimeout(() => {
+  initialize();
+// }, 2000)
+
 if (!allTypesData) {
   getAllTypesData();
 }
