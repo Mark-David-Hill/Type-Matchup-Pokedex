@@ -2,17 +2,35 @@
 const PD = require('./modules/pokemon/pokedexUtil');
 // general utility functions
 const U = require('./modules/util/util');
-
 const Pokedex = require("pokeapi-js-wrapper");
 const P = new Pokedex.Pokedex();
+
+
+let allPokemon = null;
+let allTypesData = null;
+let singleTypedPokemon = null;
+
+// 
+// Local Storage
+// 
+
+// All Pokemon Data
+if (localStorage.allPokemon) {
+  rawData = localStorage.getItem('allPokemon');
+  allPokemon = JSON.parse(rawData);
+  console.log('retrieve all pokemon from local storage')
+}
+// All Types Data
+if (localStorage.allTypesData) {
+  rawData = localStorage.getItem('allTypesData');
+  allTypesData = JSON.parse(rawData);
+  console.log('retrieve all types data from local storage')
+}
 
 // 
 // Initialize- retrieve data for all Pokemon/display to screen
 // 
 
-let allPokemon = undefined;
-let allTypesData = null;
-let singleTypedPokemon = null;
 const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
 
 // Get Type Data
@@ -29,6 +47,7 @@ const getAllTypesData = async () => {
         allTypesData = results;
         console.log('All Types Data:');
         console.log(allTypesData);
+        localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
         search();
         singleTypedPokemon = PD.getSingleTyped(allTypesData);
     });
@@ -39,14 +58,21 @@ const getAllTypesData = async () => {
   }
 }
 
+// Get all Pokemon Data / display to screen
 const initialize = async () => {
   const pokeData = await PD.getAllPokemon();
-  allPokemon = PD.makePokeArray(pokeData);
+  if (!allPokemon) {
+    allPokemon = PD.makePokeArray(pokeData);
+  }
+  localStorage.setItem('allPokemon', JSON.stringify(allPokemon));
   PD.displayAllPokemon(allPokemon);
 }
 
 initialize();
-getAllTypesData()
+if (!allTypesData) {
+  getAllTypesData();
+}
+
 
 // 
 // Search Functionality
