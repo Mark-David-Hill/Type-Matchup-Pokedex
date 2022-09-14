@@ -11,6 +11,7 @@ const makePokeCont = require('./makePokeCont');
 const getTypeId = require('./getTypeId');
 const getTypePokemon = require('./getTypePokemon');
 const getSingleTyped = require('./getSingleTyped');
+const typeFilter = require('./typeFilter');
 
 module.exports = {
     getPokemon: getPokemon,
@@ -25,5 +26,6 @@ module.exports = {
     makePokeCont: makePokeCont,
     getTypeId: getTypeId,
     getTypePokemon: getTypePokemon,
-    getSingleTyped: getSingleTyped
+    getSingleTyped: getSingleTyped,
+    typeFilter: typeFilter
 };
