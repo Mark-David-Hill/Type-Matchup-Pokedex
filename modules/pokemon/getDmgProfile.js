@@ -29,9 +29,6 @@ module.exports = (type1, type2, allTypesData) => {
     type1DmgRel.x1half = getTypeNames(type1x1half);
     type1DmgRel.x0 = getTypeNames(type1x0);
 
-    // console.log(`${type1} dmg relationships:`)
-    // console.log(type1DmgRel);
-
     // Type 2 data
 
     let type2DmgRel = null;
@@ -48,12 +45,7 @@ module.exports = (type1, type2, allTypesData) => {
         type2DmgRel.x2 = getTypeNames(type2x2);
         type2DmgRel.x1half = getTypeNames(type2x1half);
         type2DmgRel.x0 = getTypeNames(type2x0);
-
-        // console.log(`${type2} dmg relationships:`)
-        // console.log(type2DmgRel);
     }
-
-    // type1DmgRel, type2DmgRel
     
     // 
     // Set up Defense Damage Relationship profile based on the relationships for the 2 types

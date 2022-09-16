@@ -105,16 +105,5 @@ module.exports = (dmgProfile) => {
                 </div>`                
     }
 
-
     return content;
-    // content += `
-    //             <div class="row">
-    //                 <p>Resistant To:</p>
-    //             </div>
-    //             <div class="row">
-    //                 <p>Immune To:</p>
-    //             </div>`
-    
-    
-    // content += `<li class="rounded text-center ${type} p-1 m-1">${type}</li>`;
 }

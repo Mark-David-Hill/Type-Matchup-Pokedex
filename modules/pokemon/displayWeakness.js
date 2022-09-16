@@ -19,8 +19,6 @@ module.exports = (dmgProfile) => {
         weakToRowEl.classList.add('d-flex')
         let content = '';
 
-        
-
         // 
         // x4 Section
         // 

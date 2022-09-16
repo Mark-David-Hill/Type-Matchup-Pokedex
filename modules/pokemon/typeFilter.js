@@ -1,7 +1,9 @@
 const getTypeId = require("./getTypeId");
 const getTypePokemon = require("./getTypePokemon");
 
-module.exports = (type1El, type2El, allTypesData, filteredList, singleTypedPokemon) => {
+module.exports = (fd) => {
+    // Destructure passed-in filter data
+    const {type1El, type2El, allTypesData, filteredList, singleTypedPokemon} = fd;
     let result = null;
     const type1 = type1El.value;
     const type2 = type2El.value;

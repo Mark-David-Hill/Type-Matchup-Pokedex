@@ -144,8 +144,16 @@ const search = () => {
       });
     });
 
+    const filterData = {
+      type1El,
+      type2El,
+      allTypesData,
+      filteredList, 
+      singleTypedPokemon
+    }
+
     // Filter by Type
-    let finalList = PD.typeFilter(type1El, type2El, allTypesData, filteredList, singleTypedPokemon);
+    let finalList = PD.typeFilter(filterData);
 
     // Create and display HTML content
     if(finalList) {
@@ -175,8 +183,6 @@ searchBar.oninput = search;
 
 const root = U.getEl('root');
 const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
-
-
 
 const displayPokemon = (pokeName) => {
   // Make sure pokeName has been successfully set
