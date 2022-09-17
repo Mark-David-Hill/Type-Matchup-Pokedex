@@ -225,6 +225,11 @@ const displayPokemon = (pokeName) => {
         PD.getPokemon(pokeName, allTypesData)
         .then((response) => {
           const pokemon = response;
+          P.getPokemonSpeciesByName(pokeName).then(function(response) {
+            const evolutionChain = response.evolution_chain;
+            // console.log('evolution chain link:')
+            // console.log(evolutionChain)
+          })
           const pokeModal = U.getEl('modalContent');
           // Hide load animations
           for (let i = 0; i < loadEls.length; i++) {
