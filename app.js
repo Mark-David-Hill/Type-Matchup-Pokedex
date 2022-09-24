@@ -59,6 +59,46 @@ const getAllTypesData = async () => {
   }
 }
 
+
+// Get Type Data
+
+// for (let i = 1; i < 20; i++) {
+//   PD.getEvolutions(i);
+// }
+let allEvoChains = null;
+
+const getEvoChains = async () => {
+  try {
+
+    let promises = [];
+    // Create array of promises for retrieving type data
+    for (let i = 1; i < 20; i++) {
+        promises.push(PD.getEvolutions(i));
+    }
+    
+    await Promise.all(promises).then((results) => {
+        allEvoChains = results;
+        console.log('All Evo Chains:');
+        console.log(allEvoChains);
+        // localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
+        // search();
+        // singleTypedPokemon = PD.getSingleTyped(allTypesData);
+    });
+  }
+  catch(err){
+      console.log('Error when retrieving evolution chains:')
+      console.log(err);
+  }
+}
+
+// getEvoChains();
+
+// PD.getEvolutions(26);
+
+// for (let i = 1; i <= 20; i++) {
+//   PD.getEvolutions(i);
+// }
+
 // Get all Pokemon Data / display to screen
 const initialize = async () => {
   // Request data from Poke API if not in local storage
@@ -226,10 +266,6 @@ const displayPokemon = (pokeName) => {
         PD.getPokemon(pokeName, allTypesData)
         .then((response) => {
           const pokemon = response;
-          // 
-          // Get Evolution Chain
-          // 
-          // const evolutions = PD.getEvolutions(pokeName);
 
           const pokeModal = U.getEl('modalContent');
           // Hide load animations
