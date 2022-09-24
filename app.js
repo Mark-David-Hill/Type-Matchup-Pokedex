@@ -229,7 +229,7 @@ const displayPokemon = (pokeName) => {
           // 
           // Get Evolution Chain
           // 
-          // PD.getEvolutions(pokeName);
+          // const evolutions = PD.getEvolutions(pokeName);
 
           const pokeModal = U.getEl('modalContent');
           // Hide load animations

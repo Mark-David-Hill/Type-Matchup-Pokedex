@@ -12,7 +12,7 @@ const getTypeId = require('./getTypeId');
 const getTypePokemon = require('./getTypePokemon');
 const getSingleTyped = require('./getSingleTyped');
 const typeFilter = require('./typeFilter');
-// const getEvolutions = require('./getEvolutions');
+const getEvolutions = require('./getEvolutions');
 
 module.exports = {
     getPokemon: getPokemon,
@@ -28,6 +28,6 @@ module.exports = {
     getTypeId: getTypeId,
     getTypePokemon: getTypePokemon,
     getSingleTyped: getSingleTyped,
-    typeFilter: typeFilter
-    // getEvolutions: getEvolutions
+    typeFilter: typeFilter,
+    getEvolutions: getEvolutions
 };
