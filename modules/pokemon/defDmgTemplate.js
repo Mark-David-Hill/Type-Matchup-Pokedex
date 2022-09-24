@@ -1,8 +1,8 @@
 const typeTemplate = require('./typeTemplate');
 
 module.exports = (dmgProfile) => {
-    console.log('dmgProfile:')
-    console.log(dmgProfile);
+    // console.log('dmgProfile:')
+    // console.log(dmgProfile);
     const x0 = dmgProfile.x0;
     const x1fourth = dmgProfile.x1fourth;
     const x1half = dmgProfile.x1half;

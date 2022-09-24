@@ -3,6 +3,7 @@ const PD = require('./modules/pokemon/pokedexUtil');
 // general utility functions
 const U = require('./modules/util/util');
 const Pokedex = require("pokeapi-js-wrapper");
+// const { getEvolutions } = require('./modules/pokemon/pokedexUtil');
 const P = new Pokedex.Pokedex();
 
 
@@ -225,11 +226,11 @@ const displayPokemon = (pokeName) => {
         PD.getPokemon(pokeName, allTypesData)
         .then((response) => {
           const pokemon = response;
-          P.getPokemonSpeciesByName(pokeName).then(function(response) {
-            const evolutionChain = response.evolution_chain;
-            // console.log('evolution chain link:')
-            // console.log(evolutionChain)
-          })
+          // 
+          // Get Evolution Chain
+          // 
+          // PD.getEvolutions(pokeName);
+
           const pokeModal = U.getEl('modalContent');
           // Hide load animations
           for (let i = 0; i < loadEls.length; i++) {
