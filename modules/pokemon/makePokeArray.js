@@ -10,6 +10,8 @@ module.exports = (pokeList) => {
         url: pokemon.url
     }));
 
-    // console.log(allPokemon)
+    // allPokemon.unshift('rattata-alola')
+
+    console.log(allPokemon)
     return allPokemon;
 }

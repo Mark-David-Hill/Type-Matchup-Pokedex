@@ -72,14 +72,14 @@ const getEvoChains = async () => {
 
     let promises = [];
     // Create array of promises for retrieving type data
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i <= 20; i++) {
         promises.push(PD.getEvolutions(i));
     }
     
     await Promise.all(promises).then((results) => {
         allEvoChains = results;
-        console.log('All Evo Chains:');
-        console.log(allEvoChains);
+        // console.log('All Evo Chains:');
+        // console.log(allEvoChains);
         // localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
         // search();
         // singleTypedPokemon = PD.getSingleTyped(allTypesData);
@@ -91,11 +91,15 @@ const getEvoChains = async () => {
   }
 }
 
+// getEvoChains()
+
 // getEvoChains();
 
-// PD.getEvolutions(26);
+// PD.getEvolutions(135);
 
-// for (let i = 1; i <= 20; i++) {
+// PD.getEvolutionsByName('wurmple');
+
+// for (let i = 55; i <= 58; i++) {
 //   PD.getEvolutions(i);
 // }
 
@@ -105,6 +109,7 @@ const initialize = async () => {
   if (!allPokemon) {
     try {
       const pokeData = await PD.getAllPokemon();
+      console.log('testing...')
       allPokemon = PD.makePokeArray(pokeData);
       localStorage.setItem('allPokemon', JSON.stringify(allPokemon));
     } catch (error) {
