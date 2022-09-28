@@ -20,8 +20,6 @@ module.exports = async (pokeName) => {
     try {
         P.getPokemonByName(pokeName).then((response) => {
             let pokemon = response;
-            console.log('new test:')
-            console.log(pokemon);
             species = pokemon.species.name;
             P.getPokemonSpeciesByName(species).then(function(response) {
                 const evoData = response.evolution_chain.url;
@@ -79,6 +77,86 @@ module.exports = async (pokeName) => {
                             content += `<option value="${evo}">${cName}</option>`
                         }
                     });
+
+
+
+
+
+            // Get Type Data
+            const getAllTypesData = async () => {
+                try {
+            
+                let promises = [];
+                // Create array of promises for retrieving type data
+                for (let i = 0; i < types.length; i++) {
+                    promises.push(P.getTypeByName(types[i]));
+                }
+                
+                await Promise.all(promises).then((results) => {
+                    allTypesData = results;
+                    // console.log('All Types Data:');
+                    // console.log(allTypesData);
+                    localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
+                    search();
+                    singleTypedPokemon = PD.getSingleTyped(allTypesData);
+                });
+                }
+                catch(err){
+                    console.log('Error when retrieving type data:')
+                    console.log(err);
+                }
+            }
+
+
+
+
+
+
+                    const getAllForms = async (evolutions) => {
+                        try {
+                            let promises = [];
+                            // Create array of promises for retrieving type data
+                            for (let i = 0; i < evolutions.length; i++) {
+                                promises.push(getForms(evolutions[i]));
+                            }
+
+                            await Promise.all(promises).then((results) => {
+                                allForms = results;
+                                console.log('allForms:');
+                                console.log(allForms);
+
+                                const pokeSelectEl = document.getElementById('pokeSelect');
+    
+                                let content = '';
+
+                                let forms = [];
+                                for (let i = 0; i < allForms.length; i++) {
+                                    let evo = allForms[i];
+                                    evo.forEach(form => {
+                                        forms.push(form);
+                                    });
+                                }
+                                    
+                                forms.forEach(form => {
+                                    const cName = U.capitalize(form); 
+                                    if (form === pokeName) {
+                                        content += `<option id="option1" value="${form}" selected>${cName}</option>`
+                                    }
+                                    else {
+                                        content += `<option value="${form}">${cName}</option>`
+                                    }
+                                });
+                        
+                                pokeSelectEl.innerHTML = content;
+
+                            });
+                        } catch (err) {
+                            console.log('Error when retrieving pokemon forms data:')
+                            console.log(err);
+                        }
+                    }
+
+                    getAllForms(evolutions);
 
                     const pokeSelectEl = document.getElementById('pokeSelect');
                     pokeSelectEl.innerHTML = content;
