@@ -6,7 +6,7 @@ module.exports = async (evolutions, currPoke) => {
     // console.log('name test:')
     // console.log(pokemon)
     evolutions.forEach(evo => {
-        let formData = await P.getPokemonSpeciesByName(pokemon);
+        let formData = P.getPokemonSpeciesByName(pokemon);
         forms.push(evo)
     });
             response.varieties.forEach(pokeData => {

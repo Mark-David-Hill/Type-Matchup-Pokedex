@@ -69,8 +69,21 @@ module.exports = async (pokeName) => {
                     }
                     
                     // console.log(evolutions)
+
+                    evolutions.forEach(evo => {
+                        const cName = U.capitalize(evo); 
+                        if (evo === pokeName) {
+                            content += `<option id="option1" value="${evo}" selected>${cName}</option>`
+                        }
+                        else {
+                            content += `<option value="${evo}">${cName}</option>`
+                        }
+                    });
+
+                    const pokeSelectEl = document.getElementById('pokeSelect');
+                    pokeSelectEl.innerHTML = content;
             
-                    getForms(evolutions, pokeName)
+                    // getForms(evolutions, pokeName)
                 
                     return evolutions;
                 })
