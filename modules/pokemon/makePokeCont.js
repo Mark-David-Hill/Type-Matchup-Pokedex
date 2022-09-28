@@ -7,13 +7,15 @@ const defDmgTemplate = require("./defDmgTemplate");
 const displayWeakness = require("./displayWeakness");
 const displayResists = require("./displayResists");
 const displayImmunity = require("./displayImmunity");
+const getEvolutionsByName = require("./getEvolutionsByName");
 
 // Creates HTML content for the data of a given Pokemon
 module.exports = (pokemon, allTypesData) => {
-
   // Set up HTML element variables
 
-  const pokeNameEl = U.getEl('pokeName');
+  const pokeSelectEl = U.getEl('pokeSelect');
+  // const pokeNameEl = U.getEl('pokeName');
+  const pokeIdEl = U.getEl('pokeId');
   const pokeImageEl = U.getEl('pokeImage');
   const pokeTypesEl = U.getEl('pokeTypes')
   
@@ -24,13 +26,19 @@ module.exports = (pokemon, allTypesData) => {
   const resistsRowEl = U.getEl('resistsRow')
   const immuneToRowEl = U.getEl('immuneToRow')
   
+  let id = '';
+  // Only show id# if part of main Pokedex, not for alternate forms
+  if (pokemon.id < 1000) {
+    id = `#${pokemon.id}`
+  } 
 
 
   // 
   // Set up Data Variables
   //
 
-  const name = U.capitalize(pokemon.name);
+  const cName = U.capitalize(pokemon.name);
+  const name = pokemon.name;
   const image = pokemon.sprites.other[`official-artwork`].front_default
   // const image = pokemon.sprites.front_default
   const types = getTypes(pokemon);
@@ -52,7 +60,10 @@ module.exports = (pokemon, allTypesData) => {
   // Set up HTML content
   // 
 
-  pokeNameEl.textContent = `#${pokemon.id} ${name}`;
+  // pokeNameEl.textContent = `${name}`;
+  pokeSelectEl.innerHTML = `<option id="option1" value="${name}" selected>${cName}</option>`
+
+  pokeIdEl.textContent = `${id}`;
   pokeImageEl.src = `${image}`;
   pokeImageEl.alt = `${name}`;
   pokeImageEl.style.display = 'block';
@@ -65,26 +76,9 @@ module.exports = (pokemon, allTypesData) => {
   displayResists(dmgProfile);
   displayImmunity(dmgProfile);
 
+  getEvolutionsByName(name);
 
   let content = "";
-  content += `
-    <div class="row">
-      <img src="${image}" alt="${name}"/>
-    </div>
-    <div class="d-flex flex-row">
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        
-          <h2 class="text-center align-middle m-5">#${pokemon.id} ${name}</h2>
-        
-      </div>
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        <ul class="text-center align-middle pt-4">
-        ${type1Cont}
-        ${type2Cont}
-        </ul>
-      </div>
-    </div>
-    ${dmgProfCont}`
   return content;
 }
 

@@ -46,8 +46,8 @@ const getAllTypesData = async () => {
     
     await Promise.all(promises).then((results) => {
         allTypesData = results;
-        console.log('All Types Data:');
-        console.log(allTypesData);
+        // console.log('All Types Data:');
+        // console.log(allTypesData);
         localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
         search();
         singleTypedPokemon = PD.getSingleTyped(allTypesData);
@@ -67,29 +67,29 @@ const getAllTypesData = async () => {
 // }
 let allEvoChains = null;
 
-const getEvoChains = async () => {
-  try {
+// const getEvoChains = async () => {
+//   try {
 
-    let promises = [];
-    // Create array of promises for retrieving type data
-    for (let i = 1; i <= 20; i++) {
-        promises.push(PD.getEvolutions(i));
-    }
+//     let promises = [];
+//     // Create array of promises for retrieving type data
+//     for (let i = 1; i <= 20; i++) {
+//         promises.push(PD.getEvolutions(i));
+//     }
     
-    await Promise.all(promises).then((results) => {
-        allEvoChains = results;
-        // console.log('All Evo Chains:');
-        // console.log(allEvoChains);
-        // localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
-        // search();
-        // singleTypedPokemon = PD.getSingleTyped(allTypesData);
-    });
-  }
-  catch(err){
-      console.log('Error when retrieving evolution chains:')
-      console.log(err);
-  }
-}
+//     await Promise.all(promises).then((results) => {
+//         allEvoChains = results;
+//         // console.log('All Evo Chains:');
+//         // console.log(allEvoChains);
+//         // localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
+//         // search();
+//         // singleTypedPokemon = PD.getSingleTyped(allTypesData);
+//     });
+//   }
+//   catch(err){
+//       console.log('Error when retrieving evolution chains:')
+//       console.log(err);
+//   }
+// }
 
 // getEvoChains()
 
@@ -97,7 +97,7 @@ const getEvoChains = async () => {
 
 // PD.getEvolutions(135);
 
-// PD.getEvolutionsByName('wurmple');
+// PD.getEvolutionsByName('mewtwo');
 
 // for (let i = 55; i <= 58; i++) {
 //   PD.getEvolutions(i);
@@ -109,7 +109,6 @@ const initialize = async () => {
   if (!allPokemon) {
     try {
       const pokeData = await PD.getAllPokemon();
-      console.log('testing...')
       allPokemon = PD.makePokeArray(pokeData);
       localStorage.setItem('allPokemon', JSON.stringify(allPokemon));
     } catch (error) {
@@ -148,6 +147,7 @@ else {
 const searchBar = U.getEl('search');
 const type1El = U.getEl('type1');
 const type2El = U.getEl('type2');
+const pokeSelectEl = U.getEl('pokeSelect')
 
 // Clear selected types
 const clear = () => {
@@ -163,6 +163,14 @@ const clearBtn2El = U.getEl('clearBtn2');
 clearBtnEl.addEventListener("click", clear);
 clearBtn2El.addEventListener("click", clear);
 
+// Run when Pokemon is selected from drop-down in modal
+const selectPokemon = () => {
+  const imgEl = U.getEl('pokeImage');
+  imgEl.alt = '';
+  imgEl.src = '';
+  const pokemon = pokeSelectEl.value;
+  displayPokemon(pokemon);
+}
 
 // Function to run when user types in search bar or changes type
 const search = () => {
@@ -234,8 +242,10 @@ const displayPokemon = (pokeName) => {
   // Make sure pokeName has been successfully set
   if (pokeName) {
     // Reset modal content
-    const pokeNameEl = U.getEl('pokeName');
-    pokeNameEl.innerText = ''
+    const pokeIdEl = U.getEl('pokeId');
+    pokeSelectEl.innerHTML = `<option id="option1" value="none" selected></option>`
+    
+    pokeIdEl.textContent = '';
 
     // Begin to display modal
     myModal.show();
@@ -329,6 +339,8 @@ root.addEventListener("click", (event) => {
 
 type1El.addEventListener("change", search);
 type2El.addEventListener("change", search);
+
+pokeSelectEl.addEventListener("change", selectPokemon);
 
 // Event for When 'Enter' is pressed in the Search Bar
 searchBar.addEventListener('keypress', function (e) {

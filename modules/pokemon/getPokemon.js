@@ -6,7 +6,7 @@ module.exports = async (pokemon) => {
     try {
         let response = await P.getPokemonByName(pokemon);
         // toDo(response);
-        console.log(response);
+        // console.log(response);
         return response;
     }
     catch (err) {
