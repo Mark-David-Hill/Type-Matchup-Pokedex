@@ -20,6 +20,78 @@ module.exports = async (pokemon) => {
                         forms.push(formName);
                     }
                 }
+                // else if (pokemon === 'castform') {
+                //     if (formName === 'castform') {
+                //         forms.push(formName);
+                //     }
+                // }
+                else if (pokemon === 'darmanitan') {
+                    if (formName !== 'darmanitan-galar-zen') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'greninja') {
+                    if (formName !== 'greninja-battle-bond') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'floette') {
+                    if (formName !== 'floette-eternal') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'pumpkaboo') {
+                    if (formName === 'pumpkaboo-average') {
+                        // forms.push('pumpkaboo');
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'gourgeist') {
+                    if (formName === 'gourgeist-average') {
+                        // forms.push('gourgeist')
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'rockruff') {
+                    if (formName !== 'rockruff-own-tempo') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'minior') {
+                    if (formName === 'minior-red-meteor' || formName === 'minior-red') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'mimikyu') {
+                    if (formName !== 'mimikyu-busted') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'magearna') {
+                    if (formName !== 'magearna-original') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'cramorant') {
+                    if (formName === 'cramorant') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'eternatus') {
+                    if (formName !== 'eternatus-eternamax') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'zarude') {
+                    if (formName !== 'zarude-dada') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'zygarde') {
+                    if (formName !== 'zygarde-10' && formName !== 'zygarde-50-power-construct') {
+                        forms.push(formName);
+                    }
+                }
                 else {
                     forms.push(formName);
                 }
