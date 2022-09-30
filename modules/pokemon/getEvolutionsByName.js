@@ -138,7 +138,11 @@ module.exports = async (pokeName) => {
                                 }
                                     
                                 forms.forEach(form => {
-                                    const cName = U.capitalize(form); 
+                                    // const cName = U.capitalize(form); 
+                                    // Capitalize first leter of each word
+                                    const cName = form.replace(/(^|[\s-])\S/g, function (match) {
+                                        return match.toUpperCase();
+                                    }); 
                                     if (form === pokeName) {
                                         content += `<option id="option1" value="${form}" selected>${cName}</option>`
                                     }
