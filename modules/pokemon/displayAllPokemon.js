@@ -1,10 +1,6 @@
-const Pokedex = require("pokeapi-js-wrapper")
-const P = new Pokedex.Pokedex()
-
 module.exports = (allPokemon) => {
     // Uses created Pokemon array to create HTML content/display it to the screen.
     let content = '';
-    // <div class="col-4 col-md-3 col-lg-2"></div>
     allPokemon.forEach(pokemon => {
     content += `<div class="col-6 col-sm-4 col-md-3 col-lg-2">
                     <div class="card">

@@ -1,6 +1,4 @@
-const Pokedex = require("pokeapi-js-wrapper")
 const display = require("../util/display")
-const P = new Pokedex.Pokedex()
 
 module.exports = async (pokemon) => {
     const name = capitalize(pokemon.name);

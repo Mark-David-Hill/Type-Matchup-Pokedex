@@ -1,7 +1,7 @@
 // Custom utility functions for working with Pokemon Data
 const {getSingleTyped, getAllPokemon, makePokeArray, pokeSearch, displayAllPokemon, typeFilter, makeFiltCont, getPokemon, makePokeCont} = require('./modules/pokemon/pokedexUtil');
 // general utility functions
-const U = require('./modules/util/util');
+const {getEl, capitalize} = require('./modules/util/util');
 const Pokedex = require("pokeapi-js-wrapper");
 // const { getEvolutions } = require('./modules/pokemon/pokedexUtil');
 const P = new Pokedex.Pokedex();
@@ -76,7 +76,7 @@ const initialize = async () => {
     }
   }
   // Change justification for root element before loading spinner is replaced w/Poke data
-  const root = U.getEl('root');
+  const root = getEl('root');
   if (allPokemon) {
     root.classList.remove('justify-content-center');
     displayAllPokemon(allPokemon);
@@ -103,10 +103,10 @@ else {
 // Search Functionality
 // 
 
-const searchBar = U.getEl('search');
-const type1El = U.getEl('type1');
-const type2El = U.getEl('type2');
-const pokeSelectEl = U.getEl('pokeSelect')
+const searchBar = getEl('search');
+const type1El = getEl('type1');
+const type2El = getEl('type2');
+const pokeSelectEl = getEl('pokeSelect')
 
 // Clear selected types
 const clear = () => {
@@ -117,14 +117,14 @@ const clear = () => {
   search();
 }
 
-const clearBtnEl = U.getEl('clearBtn');
-const clearBtn2El = U.getEl('clearBtn2');
+const clearBtnEl = getEl('clearBtn');
+const clearBtn2El = getEl('clearBtn2');
 clearBtnEl.addEventListener("click", clear);
 clearBtn2El.addEventListener("click", clear);
 
 // Run when Pokemon is selected from drop-down in modal
 const selectPokemon = () => {
-  const imgEl = U.getEl('pokeImage');
+  const imgEl = getEl('pokeImage');
   imgEl.alt = '';
   imgEl.src = '';
   const pokemon = pokeSelectEl.value;
@@ -171,7 +171,7 @@ const search = () => {
     // Create and display HTML content
     if(finalList) {
       let content = '';
-      const resultsEl = U.getEl('results');
+      const resultsEl = getEl('results');
       if (finalList.length > 0) {
         const numResults = finalList.length;
         resultsEl.innerText = `Showing ${numResults} Results`
@@ -181,7 +181,7 @@ const search = () => {
         resultsEl.innerText = '0 Results. No Pokémon match those criteria'
       }
       // Display Pokemon data based on search
-      const root = U.getEl('root');
+      const root = getEl('root');
       root.innerHTML = content;
     }
   }
@@ -194,14 +194,14 @@ searchBar.oninput = search;
 // Show info for individual Pokemon
 // 
 
-const root = U.getEl('root');
+const root = getEl('root');
 const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
 
 const displayPokemon = (pokeName) => {
   // Make sure pokeName has been successfully set
   if (pokeName) {
     // Reset modal content
-    const pokeIdEl = U.getEl('pokeId');
+    const pokeIdEl = getEl('pokeId');
     pokeSelectEl.innerHTML = `<option id="option1" value="none" selected></option>`
     
     pokeIdEl.textContent = '';
@@ -209,11 +209,11 @@ const displayPokemon = (pokeName) => {
     // Begin to display modal
     myModal.show();
 
-    const pokeTypesEl = U.getEl('pokeTypes')
+    const pokeTypesEl = getEl('pokeTypes')
     pokeTypesEl.innerHTML = '';
-    const weakToTypesEl = U.getEl('weakToTypes');
-    const resistsTypesEl = U.getEl('resistsTypes');
-    const immuneToTypesEl = U.getEl('immuneToTypes');
+    const weakToTypesEl = getEl('weakToTypes');
+    const resistsTypesEl = getEl('resistsTypes');
+    const immuneToTypesEl = getEl('immuneToTypes');
     const dmgLabels = document.getElementsByClassName('dmgLabel');
     for (let i = 0; i < dmgLabels.length; i++) {
       dmgLabels[i].classList.add('hideText');
@@ -241,7 +241,7 @@ const displayPokemon = (pokeName) => {
         .then((response) => {
           const pokemon = response;
 
-          const pokeModal = U.getEl('modalContent');
+          const pokeModal = getEl('modalContent');
           // Hide load animations
           for (let i = 0; i < loadEls.length; i++) {
             const element = loadEls[i];
@@ -261,7 +261,7 @@ const displayPokemon = (pokeName) => {
           element.style.display = 'none';
         }
         // Display error to screen
-        const modalErrorEl = U.getEl('modalError');
+        const modalErrorEl = getEl('modalError');
         const content = `<p class="text-center">Something went wrong, we weren't able to load this data from the Poke API. Please try reloading the Pokémon or refreshing the page.</p>`
         modalErrorEl.innerHTML = content;
         modalErrorEl.classList.remove('d-none');
@@ -280,7 +280,7 @@ root.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (clickedElement.id !== "root") {
     let pokeName = '';
-    const imgEl = U.getEl('pokeImage');
+    const imgEl = getEl('pokeImage');
     imgEl.src = ""
     imgEl.style.display = 'none';
     // imgEl.src = "https://via.placeholder.com/525x500"

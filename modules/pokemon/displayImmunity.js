@@ -1,11 +1,9 @@
 const typeTemplate = require('./typeTemplate');
-const U = require("../util/util")
 
 module.exports = (dmgProfile) => {
     const x0 = dmgProfile.x0;
-
-    const immuneToTypesEl = U.getEl('immuneToTypes');
-    const immuneToRowEl = U.getEl('immuneToRow');
+    const immuneToTypesEl = document.getElementById('immuneToTypes');
+    const immuneToRowEl = document.getElementById('immuneToRow');
 
     // 
     // Immune to Section
