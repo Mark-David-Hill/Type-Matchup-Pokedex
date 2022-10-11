@@ -1,10 +1,11 @@
 // Custom utility functions for working with Pokemon Data
-const PD = require('./modules/pokemon/pokedexUtil');
+const {getSingleTyped, getAllPokemon, makePokeArray, pokeSearch, displayAllPokemon, typeFilter, makeFiltCont, getPokemon, makePokeCont} = require('./modules/pokemon/pokedexUtil');
 // general utility functions
 const U = require('./modules/util/util');
 const Pokedex = require("pokeapi-js-wrapper");
 // const { getEvolutions } = require('./modules/pokemon/pokedexUtil');
 const P = new Pokedex.Pokedex();
+
 
 
 let allPokemon = null;
@@ -50,7 +51,7 @@ const getAllTypesData = async () => {
         // console.log(allTypesData);
         localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
         search();
-        singleTypedPokemon = PD.getSingleTyped(allTypesData);
+        singleTypedPokemon = getSingleTyped(allTypesData);
     });
   }
   catch(err){
@@ -59,57 +60,15 @@ const getAllTypesData = async () => {
   }
 }
 
-
-// Get Type Data
-
-// for (let i = 1; i < 20; i++) {
-//   PD.getEvolutions(i);
-// }
 let allEvoChains = null;
-
-// const getEvoChains = async () => {
-//   try {
-
-//     let promises = [];
-//     // Create array of promises for retrieving type data
-//     for (let i = 1; i <= 20; i++) {
-//         promises.push(PD.getEvolutions(i));
-//     }
-    
-//     await Promise.all(promises).then((results) => {
-//         allEvoChains = results;
-//         // console.log('All Evo Chains:');
-//         // console.log(allEvoChains);
-//         // localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
-//         // search();
-//         // singleTypedPokemon = PD.getSingleTyped(allTypesData);
-//     });
-//   }
-//   catch(err){
-//       console.log('Error when retrieving evolution chains:')
-//       console.log(err);
-//   }
-// }
-
-// getEvoChains()
-
-// getEvoChains();
-
-// PD.getEvolutions(135);
-
-// PD.getEvolutionsByName('mewtwo');
-
-// for (let i = 55; i <= 58; i++) {
-//   PD.getEvolutions(i);
-// }
 
 // Get all Pokemon Data / display to screen
 const initialize = async () => {
   // Request data from Poke API if not in local storage
   if (!allPokemon) {
     try {
-      const pokeData = await PD.getAllPokemon();
-      allPokemon = PD.makePokeArray(pokeData);
+      const pokeData = await getAllPokemon();
+      allPokemon = makePokeArray(pokeData);
       localStorage.setItem('allPokemon', JSON.stringify(allPokemon));
     } catch (error) {
       console.log('Error: Data could not be retrieved from the Poke API.')
@@ -120,7 +79,7 @@ const initialize = async () => {
   const root = U.getEl('root');
   if (allPokemon) {
     root.classList.remove('justify-content-center');
-    PD.displayAllPokemon(allPokemon);
+    displayAllPokemon(allPokemon);
   }
   else {
     const content = `<p class="text-center">Something went wrong, we weren't able to load this data from the Poke API. Please try refreshing the page.</p>`
@@ -136,7 +95,7 @@ if (!allTypesData) {
   getAllTypesData();
 }
 else {
-  singleTypedPokemon = PD.getSingleTyped(allTypesData);
+  singleTypedPokemon = getSingleTyped(allTypesData);
 }
 
 
@@ -176,7 +135,7 @@ const selectPokemon = () => {
 const search = () => {
   if (allPokemon) {
     // Filter by Search String
-    const filteredList = PD.pokeSearch(allPokemon, searchBar);
+    const filteredList = pokeSearch(allPokemon, searchBar);
     // let finalList = null;
 
     // Set disabled state for the Type2 Selector based on if Type1 has been selected.
@@ -207,7 +166,7 @@ const search = () => {
     }
 
     // Filter by Type
-    let finalList = PD.typeFilter(filterData);
+    let finalList = typeFilter(filterData);
 
     // Create and display HTML content
     if(finalList) {
@@ -216,7 +175,7 @@ const search = () => {
       if (finalList.length > 0) {
         const numResults = finalList.length;
         resultsEl.innerText = `Showing ${numResults} Results`
-        content += PD.makeFiltCont(finalList);
+        content += makeFiltCont(finalList);
       }
       else {
         resultsEl.innerText = '0 Results. No Pokémon match those criteria'
@@ -278,7 +237,7 @@ const displayPokemon = (pokeName) => {
     // Uncomment below to check loading styles
     // setTimeout(() => {
       try {
-        PD.getPokemon(pokeName, allTypesData)
+        getPokemon(pokeName, allTypesData)
         .then((response) => {
           const pokemon = response;
 
@@ -291,7 +250,7 @@ const displayPokemon = (pokeName) => {
           for (let i = 0; i < dmgLabels.length; i++) {
             dmgLabels[i].classList.remove('hideText');
           }
-          content = PD.makePokeCont(pokemon, allTypesData);
+          content = makePokeCont(pokemon, allTypesData);
         })
       } catch (error) {
         console.log('Error: Data could not be retrieved from the Poke API.')
