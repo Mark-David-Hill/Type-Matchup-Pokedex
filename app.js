@@ -5,8 +5,7 @@ const {getEl, capitalize} = require('./modules/util/util');
 const Pokedex = require("pokeapi-js-wrapper");
 // const { getEvolutions } = require('./modules/pokemon/pokedexUtil');
 const P = new Pokedex.Pokedex();
-
-
+const {getTypeByName} = P;
 
 let allPokemon = null;
 let allTypesData = null;
@@ -42,13 +41,11 @@ const getAllTypesData = async () => {
     let promises = [];
     // Create array of promises for retrieving type data
     for (let i = 0; i < types.length; i++) {
-        promises.push(P.getTypeByName(types[i]));
+        promises.push(getTypeByName(types[i]));
     }
     
     await Promise.all(promises).then((results) => {
         allTypesData = results;
-        // console.log('All Types Data:');
-        // console.log(allTypesData);
         localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
         search();
         singleTypedPokemon = getSingleTyped(allTypesData);
