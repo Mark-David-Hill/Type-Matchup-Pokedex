@@ -18,19 +18,29 @@ module.exports = (pokemon, allTypesData) => {
   const pokeIdEl = U.getEl('pokeId');
   const pokeImageEl = U.getEl('pokeImage');
   const pokeTypesEl = U.getEl('pokeTypes')
+  const leftBtn = document.getElementById('leftArrow');
+  const rightBtn = document.getElementById('rightArrow');
+  const prevPokemonEl = document.getElementById('prevPokemon');
+  const nextPokemonEl = document.getElementById('nextPokemon');
   
   const resistsTypesEl = U.getEl('resistsTypes')
   const immuneToTypesEl = U.getEl('immuneToTypes')
   // Hid or reveal when necessary
   
+  // Reset content for previous/next Pokemon names and buttons
   const resistsRowEl = U.getEl('resistsRow')
   const immuneToRowEl = U.getEl('immuneToRow')
+  leftBtn.setAttribute('disabled', 'disabled');
+  rightBtn.setAttribute('disabled', 'disabled');
   
   let id = '';
   // Only show id# if part of main Pokedex, not for alternate forms
   if (pokemon.id < 1000) {
     id = `#${pokemon.id}`
   } 
+
+  prevPokemonEl.innerText = '';
+  nextPokemonEl.innerText = '';
 
 
   // 

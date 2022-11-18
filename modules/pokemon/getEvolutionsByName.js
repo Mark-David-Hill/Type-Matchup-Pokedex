@@ -126,6 +126,10 @@ module.exports = async (pokeName) => {
                                 console.log(allForms);
 
                                 const pokeSelectEl = document.getElementById('pokeSelect');
+                                const leftBtn = document.getElementById('leftArrow');
+                                const rightBtn = document.getElementById('rightArrow');
+                                const prevPokemonEl = document.getElementById('prevPokemon');
+                                const nextPokemonEl = document.getElementById('nextPokemon');
     
                                 let content = '';
 
@@ -136,22 +140,46 @@ module.exports = async (pokeName) => {
                                         forms.push(form);
                                     });
                                 }
+
+                                const numForms = forms.length;
+                                let formId = 0;
                                     
-                                forms.forEach(form => {
-                                    // const cName = U.capitalize(form); 
-                                    // Capitalize first leter of each word
+                                for (let i = 0; i < forms.length; i++) {
+                                    const form = forms[i];
                                     const cName = form.replace(/(^|[\s-])\S/g, function (match) {
                                         return match.toUpperCase();
                                     }); 
                                     if (form === pokeName) {
                                         content += `<option id="option1" value="${form}" selected>${cName}</option>`
+                                        formId = i;
                                     }
                                     else {
                                         content += `<option value="${form}">${cName}</option>`
                                     }
-                                });
+                                }
                         
                                 pokeSelectEl.innerHTML = content;
+
+                                // Set preview names and disabled status of previous/next buttons
+                                if (formId === 0) {
+                                    leftBtn.setAttribute('disabled', 'disabled');
+                                    prevPokemonEl.innerText = '';
+                                }
+                                else {
+                                    leftBtn.removeAttribute('disabled');
+                                    const prevForm = forms[`${formId - 1}`];
+                                    prevPokemonEl.innerText = prevForm;
+                                }
+
+                                if ((formId + 1) === forms.length) {
+                                    rightBtn.setAttribute('disabled', 'disabled');
+                                    nextPokemonEl.innerText = '';
+                                }
+                                else {
+                                    rightBtn.removeAttribute('disabled');
+                                    const nextForm = forms[`${formId + 1}`];
+                                    nextPokemonEl.innerText = nextForm;
+                                }
 
                             });
                         } catch (err) {

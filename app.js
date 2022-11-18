@@ -57,8 +57,6 @@ const getAllTypesData = async () => {
   }
 }
 
-let allEvoChains = null;
-
 // Get all Pokemon Data / display to screen
 const initialize = async () => {
   // Request data from Poke API if not in local storage
@@ -133,7 +131,6 @@ const search = () => {
   if (allPokemon) {
     // Filter by Search String
     const filteredList = pokeSearch(allPokemon, searchBar);
-    // let finalList = null;
 
     // Set disabled state for the Type2 Selector based on if Type1 has been selected.
     if (type1El.value !== "none") {
@@ -320,4 +317,28 @@ searchBar.addEventListener('keypress', function (e) {
       displayPokemon(pokeName);
     }
   }
+});
+
+const leftBtn = document.getElementById('leftArrow');
+const rightBtn = document.getElementById('rightArrow');
+const prevPokemonEl = document.getElementById('prevPokemon');
+const nextPokemonEl = document.getElementById('nextPokemon');
+
+// Next/Previous buttons
+leftBtn.addEventListener("click", (event) => {
+  const targetPokemon = prevPokemonEl.innerText;
+  // Run when Pokemon is selected from drop-down in modal
+  const imgEl = getEl('pokeImage');
+  imgEl.alt = '';
+  imgEl.src = '';
+  displayPokemon(targetPokemon);
+});
+
+rightBtn.addEventListener("click", (event) => {
+  const targetPokemon = nextPokemonEl.innerText;
+  // Run when Pokemon is selected from drop-down in modal
+  const imgEl = getEl('pokeImage');
+  imgEl.alt = '';
+  imgEl.src = '';
+  displayPokemon(targetPokemon);
 });

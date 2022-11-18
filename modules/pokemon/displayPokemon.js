@@ -12,9 +12,13 @@ module.exports = async (pokemon) => {
 
     let content = '';
     content += `<image src="${image}">`
-    content += `<p>Name: ${name}</p>`
+    content += `<p>Nam
+    e: ${name}</p>`
+    
     content += `<p>Type: ${types}</p>`
+    
     content += `<p>Weak Against: </p>`
+    
     content += `<p>Strong Against: </p>`
     
     display(root, content);
