@@ -326,7 +326,10 @@ const nextPokemonEl = document.getElementById('nextPokemon');
 
 // Next/Previous buttons
 leftBtn.addEventListener("click", (event) => {
-  const targetPokemon = prevPokemonEl.innerText;
+  const pokeName = prevPokemonEl.innerText;
+  const targetPokemon = pokeName.replace(/(^|[\s-])\S/g, function (match) {
+    return match.toLowerCase();
+  }); 
   // Run when Pokemon is selected from drop-down in modal
   const imgEl = getEl('pokeImage');
   imgEl.alt = '';
@@ -335,7 +338,10 @@ leftBtn.addEventListener("click", (event) => {
 });
 
 rightBtn.addEventListener("click", (event) => {
-  const targetPokemon = nextPokemonEl.innerText;
+  const pokeName = nextPokemonEl.innerText;
+  const targetPokemon = pokeName.replace(/(^|[\s-])\S/g, function (match) {
+    return match.toLowerCase();
+  }); 
   // Run when Pokemon is selected from drop-down in modal
   const imgEl = getEl('pokeImage');
   imgEl.alt = '';

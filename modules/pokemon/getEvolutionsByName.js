@@ -69,7 +69,8 @@ module.exports = async (pokeName) => {
                     // console.log(evolutions)
 
                     evolutions.forEach(evo => {
-                        const cName = U.capitalize(evo); 
+                        const cName = evo;
+                        U.capitalize(evo); 
                         if (evo === pokeName) {
                             content += `<option id="option1" value="${evo}" selected>${cName}</option>`
                         }
@@ -167,7 +168,10 @@ module.exports = async (pokeName) => {
                                 }
                                 else {
                                     leftBtn.removeAttribute('disabled');
-                                    const prevForm = forms[`${formId - 1}`];
+                                    const prevForm = forms[`${formId - 1}`].replace(/(^|[\s-])\S/g, function (match) {
+                                        return match.toUpperCase();
+                                    }); 
+                                    // const prevForm = U.capitalize(forms[`${formId - 1}`]); 
                                     prevPokemonEl.innerText = prevForm;
                                 }
 
@@ -177,7 +181,10 @@ module.exports = async (pokeName) => {
                                 }
                                 else {
                                     rightBtn.removeAttribute('disabled');
-                                    const nextForm = forms[`${formId + 1}`];
+                                    const nextForm = forms[`${formId + 1}`].replace(/(^|[\s-])\S/g, function (match) {
+                                        return match.toUpperCase();
+                                    }); 
+                                    // const nextForm = U.capitalize(forms[`${formId + 1}`]);
                                     nextPokemonEl.innerText = nextForm;
                                 }
 
