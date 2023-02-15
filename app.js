@@ -1,3 +1,5 @@
+let currentVersion = 1.1;
+
 // Custom utility functions for working with Pokemon Data
 const {getSingleTyped, getAllPokemon, makePokeArray, pokeSearch, displayAllPokemon, typeFilter, makeFiltCont, getPokemon, makePokeCont} = require('./modules/pokemon/pokedexUtil');
 // general utility functions
@@ -15,7 +17,15 @@ let singleTypedPokemon = null;
 // Local Storage
 // 
 
-// localStorage.removeItem('allPokemon');
+if (!localStorage.version || (localStorage.version < currentVersion)) {
+  localStorage.removeItem('allPokemon');
+  localStorage.setItem('version', currentVersion);
+}
+// localStorage.getItem('version')
+
+// localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
+
+
 
 // All Pokemon Data
 if (localStorage.allPokemon) {

@@ -10,7 +10,7 @@ module.exports = async () => {
         // 898 Has all Pokemon through Sword/Shield (all have sprites)
         // 905 Includes Legends Arceus Pokemon with sprites
         //1008 Includes Scarlet/Violet Pokemon but no sprites yet
-        limit: 905,
+        limit: 1008,
     }
     
     // Retrieve list of all Pokemon given specified interval. Includes name and url
