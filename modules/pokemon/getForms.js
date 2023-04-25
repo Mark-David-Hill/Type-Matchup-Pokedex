@@ -92,6 +92,16 @@ module.exports = async (pokemon) => {
                         forms.push(formName);
                     }
                 }
+                else if (pokemon === 'miraidon') {
+                    if (formName !== 'miraidon-low-power-mode' && formName !== 'miraidon-drive-mode' && formName !== 'miraidon-aquatic-mode' && formName !== 'miraidon-glide-mode') {
+                        forms.push(formName);
+                    }
+                }
+                else if (pokemon === 'koraidon') {
+                    if (formName !== 'koraidon-limited-build' && formName !== 'koraidon-sprinting-build' && formName !== 'koraidon-swimming-build' && formName !== 'koraidon-gliding-build') {
+                        forms.push(formName);
+                    }
+                }
                 else {
                     forms.push(formName);
                 }
