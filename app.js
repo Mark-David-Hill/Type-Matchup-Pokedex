@@ -1,6 +1,5 @@
 let currentVersion = 1.2;
 
-// Custom utility functions for working with Pokemon Data
 const {
   getSingleTyped,
   getAllPokemon,
@@ -12,10 +11,9 @@ const {
   getPokemon,
   makePokeCont,
 } = require("./modules/pokemon/pokedexUtil");
-// general utility functions
-const { getEl, capitalize } = require("./modules/util/util");
+
+const { getEl } = require("./modules/util/util");
 const Pokedex = require("pokeapi-js-wrapper");
-// const { getEvolutions } = require('./modules/pokemon/pokedexUtil');
 const P = new Pokedex.Pokedex();
 const { getTypeByName } = P;
 
@@ -31,16 +29,12 @@ if (!localStorage.version || localStorage.version < currentVersion) {
   localStorage.removeItem("allPokemon");
   localStorage.setItem("version", currentVersion);
 }
-// localStorage.getItem('version')
 
-// localStorage.setItem('allTypesData', JSON.stringify(allTypesData));
-
-// All Pokemon Data
 if (localStorage.allPokemon) {
   rawData = localStorage.getItem("allPokemon");
   allPokemon = JSON.parse(rawData);
 }
-// All Types Data
+
 if (localStorage.allTypesData) {
   rawData = localStorage.getItem("allTypesData");
   allTypesData = JSON.parse(rawData);
@@ -71,11 +65,9 @@ const types = [
   "fairy",
 ];
 
-// Get Type Data
 const getAllTypesData = async () => {
   try {
     let promises = [];
-    // Create array of promises for retrieving type data
     for (let i = 0; i < types.length; i++) {
       promises.push(getTypeByName(types[i]));
     }
@@ -86,26 +78,21 @@ const getAllTypesData = async () => {
       search();
       singleTypedPokemon = getSingleTyped(allTypesData);
     });
-  } catch (err) {
-    console.log("Error when retrieving type data:");
-    console.log(err);
+  } catch (e) {
+    console.error(e, "could not retrieve type data:");
   }
 };
 
-// Get all Pokemon Data / display to screen
 const initialize = async () => {
-  // Request data from Poke API if not in local storage
   if (!allPokemon) {
     try {
       const pokeData = await getAllPokemon();
       allPokemon = makePokeArray(pokeData);
       localStorage.setItem("allPokemon", JSON.stringify(allPokemon));
-    } catch (error) {
-      console.log("Error: Data could not be retrieved from the Poke API.");
-      console.log(error);
+    } catch (e) {
+      console.error(e, "could not retrieve data from the poke api.");
     }
   }
-  // Change justification for root element before loading spinner is replaced w/Poke data
   const root = getEl("root");
   if (allPokemon) {
     root.classList.remove("justify-content-center");
@@ -116,9 +103,7 @@ const initialize = async () => {
   }
 };
 
-// setTimeout(() => {
 initialize();
-// }, 2000)
 
 if (!allTypesData) {
   getAllTypesData();
@@ -135,12 +120,10 @@ const type1El = getEl("type1");
 const type2El = getEl("type2");
 const pokeSelectEl = getEl("pokeSelect");
 
-// Clear selected types
 const clear = () => {
   type1El.selectedIndex = 0;
   type2El.selectedIndex = 0;
   searchBar.value = "";
-  // Re-runs the filter/displays results
   search();
 };
 
@@ -149,7 +132,6 @@ const clearBtn2El = getEl("clearBtn2");
 clearBtnEl.addEventListener("click", clear);
 clearBtn2El.addEventListener("click", clear);
 
-// Run when Pokemon is selected from drop-down in modal
 const selectPokemon = () => {
   const imgEl = getEl("pokeImage");
   imgEl.alt = "";
@@ -158,22 +140,17 @@ const selectPokemon = () => {
   displayPokemon(pokemon);
 };
 
-// Function to run when user types in search bar or changes type
 const search = () => {
   if (allPokemon) {
-    // Filter by Search String
     const filteredList = pokeSearch(allPokemon, searchBar);
 
-    // Set disabled state for the Type2 Selector based on if Type1 has been selected.
     if (type1El.value !== "none") {
       type2El.disabled = false;
     } else {
       type2El.disabled = true;
     }
 
-    // Reset styling for Type Selections
     const typeBtns = [type1El, type2El];
-    // Remove type classes
     typeBtns.forEach((typeEl) => {
       typeEl.classList.remove("type");
       typeEl.classList.remove("noType");
@@ -190,10 +167,8 @@ const search = () => {
       singleTypedPokemon,
     };
 
-    // Filter by Type
     let finalList = typeFilter(filterData);
 
-    // Create and display HTML content
     if (finalList) {
       let content = "";
       const resultsEl = getEl("results");
@@ -204,14 +179,12 @@ const search = () => {
       } else {
         resultsEl.innerText = "0 Results. No Pokémon match those criteria";
       }
-      // Display Pokemon data based on search
       const root = getEl("root");
       root.innerHTML = content;
     }
   }
 };
 
-// run when user types in search bar
 searchBar.oninput = search;
 
 //
@@ -219,19 +192,16 @@ searchBar.oninput = search;
 //
 
 const root = getEl("root");
-const myModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
+const pokeModal = new bootstrap.Modal(document.getElementById("pokeModal"), {});
 
 const displayPokemon = (pokeName) => {
-  // Make sure pokeName has been successfully set
   if (pokeName) {
-    // Reset modal content
     const pokeIdEl = getEl("pokeId");
     pokeSelectEl.innerHTML = `<option id="option1" value="none" selected></option>`;
 
     pokeIdEl.textContent = "";
 
-    // Begin to display modal
-    myModal.show();
+    pokeModal.show();
 
     const pokeTypesEl = getEl("pokeTypes");
     pokeTypesEl.innerHTML = "";
@@ -246,7 +216,6 @@ const displayPokemon = (pokeName) => {
     resistsTypesEl.innerHTML = "";
     immuneToTypesEl.innerHTML = "";
 
-    // Display Load Animations
     const loadEls = document.getElementsByClassName("load");
     for (let i = 0; i < loadEls.length; i++) {
       const element = loadEls[i];
@@ -257,14 +226,11 @@ const displayPokemon = (pokeName) => {
       }
     }
 
-    // Uncomment below to check loading styles
-    // setTimeout(() => {
     try {
       getPokemon(pokeName, allTypesData).then((response) => {
         const pokemon = response;
 
         const pokeModal = getEl("modalContent");
-        // Hide load animations
         for (let i = 0; i < loadEls.length; i++) {
           const element = loadEls[i];
           element.style.display = "none";
@@ -274,28 +240,21 @@ const displayPokemon = (pokeName) => {
         }
         content = makePokeCont(pokemon, allTypesData);
       });
-    } catch (error) {
-      console.log("Error: Data could not be retrieved from the Poke API.");
-      console.log(error);
-      // Hide load animations
+    } catch (e) {
+      console.error(e, "could not retrieve data from the poke api.");
       for (let i = 0; i < loadEls.length; i++) {
         const element = loadEls[i];
         element.style.display = "none";
       }
-      // Display error to screen
       const modalErrorEl = getEl("modalError");
       const content = `<p class="text-center">Something went wrong, we weren't able to load this data from the Poke API. Please try reloading the Pokémon or refreshing the page.</p>`;
       modalErrorEl.innerHTML = content;
       modalErrorEl.classList.remove("d-none");
       modalErrorEl.classList.add("d-block");
     }
-
-    // Uncomment below to check loading styles
-    // }, 5000)
   }
 };
 
-// Click event when clicking Pokemon sprite buttons
 root.addEventListener("click", (event) => {
   const clickedElement = event.target;
   if (clickedElement.id !== "root") {
@@ -303,7 +262,6 @@ root.addEventListener("click", (event) => {
     const imgEl = getEl("pokeImage");
     imgEl.src = "";
     imgEl.style.display = "none";
-    // imgEl.src = "https://via.placeholder.com/525x500"
     if (clickedElement.classList.contains("pokeImg")) {
       pokeName = clickedElement.id;
     } else if (clickedElement.classList.contains("pokeBtn")) {
@@ -319,10 +277,8 @@ type2El.addEventListener("change", search);
 
 pokeSelectEl.addEventListener("change", selectPokemon);
 
-// Event for When 'Enter' is pressed in the Search Bar
 searchBar.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
-    // Check for exact match for Pokemon
     let exactMatch = false;
     let searchStr = searchBar.value.toLowerCase();
     for (let i = 0; i < allPokemon.length; i++) {
@@ -347,13 +303,11 @@ const rightBtn = document.getElementById("rightArrow");
 const prevPokemonEl = document.getElementById("prevPokemon");
 const nextPokemonEl = document.getElementById("nextPokemon");
 
-// Next/Previous buttons
 leftBtn.addEventListener("click", (event) => {
   const pokeName = prevPokemonEl.innerText;
   const targetPokemon = pokeName.replace(/(^|[\s-])\S/g, function (match) {
     return match.toLowerCase();
   });
-  // Run when Pokemon is selected from drop-down in modal
   const imgEl = getEl("pokeImage");
   imgEl.alt = "";
   imgEl.src = "";
@@ -365,7 +319,6 @@ rightBtn.addEventListener("click", (event) => {
   const targetPokemon = pokeName.replace(/(^|[\s-])\S/g, function (match) {
     return match.toLowerCase();
   });
-  // Run when Pokemon is selected from drop-down in modal
   const imgEl = getEl("pokeImage");
   imgEl.alt = "";
   imgEl.src = "";

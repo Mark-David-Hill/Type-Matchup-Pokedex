@@ -12,7 +12,7 @@ module.exports = async () => {
     let response = await P.getPokemonsList(interval);
     // toDo(response);
     return response.results;
-  } catch (err) {
-    console.log("Failed to load data from Pokemon API. ERROR:", err);
+  } catch (e) {
+    console.error(e, "failed to load data from Pokemon API.");
   }
 };
